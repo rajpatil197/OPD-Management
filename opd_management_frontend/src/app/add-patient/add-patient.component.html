@@ -1,0 +1,87 @@
+<div class="container mt-4">
+
+  <h2 class="fw-bold mb-3">Add New Patient</h2>
+
+  <div class="card shadow border-0">
+    <div class="card-body">
+
+      <form (ngSubmit)="savePatient()">
+
+        <div class="row">
+
+          <div class="col-md-4 mb-3">
+            <label class="form-label">Patient Name</label>
+            <input class="form-control" name="patient_name"
+                   [(ngModel)]="patient.patient_name" required>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label class="form-label">Mobile</label>
+            <input class="form-control" name="mobileno"
+                   [(ngModel)]="patient.mobileno" required>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label class="form-label">Age</label>
+            <input type="number" class="form-control" name="age"
+                   [(ngModel)]="patient.age" required>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label class="form-label">Gender</label>
+            <select class="form-select" name="gender"
+                    [(ngModel)]="patient.gender" required>
+              <option value="">Select</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label class="form-label">Blood Group</label>
+            <input class="form-control" name="blood_group"
+                   [(ngModel)]="patient.blood_group">
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label class="form-label">Height</label>
+            <input class="form-control" name="height"
+                   [(ngModel)]="patient.height">
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label class="form-label">Smoking</label>
+            <input class="form-control" name="smoking"
+                   [(ngModel)]="patient.smoking">
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label class="form-label">Alcohol</label>
+            <input class="form-control" name="alcohol"
+                   [(ngModel)]="patient.alcohol">
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label class="form-label">Tobacco</label>
+            <input class="form-control" name="tobacco"
+                   [(ngModel)]="patient.tobacco">
+          </div>
+
+          <div class="col-md-12 mb-3">
+            <label class="form-label">Address</label>
+            <input class="form-control" name="address"
+                   [(ngModel)]="patient.address">
+          </div>
+
+        </div>
+
+        <button class="btn btn-success">Save</button>
+        <button class="btn btn-secondary ms-2" routerLink="/patients">Cancel</button>
+
+      </form>
+
+    </div>
+  </div>
+
+</div>

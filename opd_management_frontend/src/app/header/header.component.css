@@ -1,0 +1,8 @@
+.navbar {
+  background: rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(10px);
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: none !important;
+}

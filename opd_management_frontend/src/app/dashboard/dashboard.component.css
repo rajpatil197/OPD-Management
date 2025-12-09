@@ -1,0 +1,20 @@
+.sidebar {
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.sidebar .nav-link {
+  font-size: 18px;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.sidebar .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+main {
+  margin-left: 220px; /* sidebar width */
+}

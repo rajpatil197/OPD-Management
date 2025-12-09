@@ -1,0 +1,117 @@
+<div class="container-fluid register-wrapper">
+  <div class="row justify-content-center align-items-center min-vh-100">
+
+    <div class="col-lg-8 col-md-10 p-0">
+      <div class="card register-card shadow-lg border-0">
+
+        <div class="row g-0">
+
+          <!-- LEFT IMAGE SECTION -->
+          <div class="col-lg-6 register-image d-none d-lg-block">
+            <div class="overlay">
+              <div class="text-white p-4">
+                <h3 class="fw-bold">OPD</h3>
+                <p class="mt-2">Your Trusted Healthcare Partner — Join Our Medical Team Today.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT FORM SECTION -->
+          <div class="col-lg-6 col-md-12 p-5">
+            <div class="form-container">
+
+              <div class="text-center mb-3">
+                <img src="assets/img/logo.png" width="60" alt="logo">
+                <h2 class="fw-bold mt-2 text-success">Register</h2>
+                <p class="text-muted">Create your doctor account</p>
+              </div>
+
+              <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
+
+                <!-- Full Name -->
+                <div class="mb-3">
+                  <label class="form-label fw-semibold">Full Name</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                    <input type="text" formControlName="name" class="form-control form-control-lg" placeholder="Enter full name">
+                  </div>
+                </div>
+
+                <!-- Email -->
+                <div class="mb-3">
+                  <label class="form-label fw-semibold">Email Address</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+                    <input type="email" formControlName="email" class="form-control form-control-lg" placeholder="Enter email">
+                  </div>
+                </div>
+
+                <!-- Specialization -->
+                <div class="mb-3">
+                  <label class="form-label fw-semibold">Specialization</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-clipboard2-pulse-fill"></i></span>
+                    <input type="text" formControlName="specialization" class="form-control form-control-lg" placeholder="Cardiologist, ENT, Dentist...">
+                  </div>
+                </div>
+
+                <!-- Clinic Name -->
+                <div class="mb-3">
+                  <label class="form-label fw-semibold">Clinic Name</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-hospital-fill"></i></span>
+                    <input type="text" formControlName="clinic_name" class="form-control form-control-lg" placeholder="Enter clinic name">
+                  </div>
+                </div>
+
+                <!-- Mobile -->
+                <div class="mb-3">
+                  <label class="form-label fw-semibold">Mobile Number</label>
+                  <input type="text" formControlName="mobileno" class="form-control form-control-lg" placeholder="Enter mobile number">
+                </div>
+
+                <!-- Address -->
+                <div class="mb-3">
+                  <label class="form-label fw-semibold">Address</label>
+                  <input type="text" formControlName="address" class="form-control form-control-lg" placeholder="Enter address">
+                </div>
+
+                <!-- Password -->
+                <div class="mb-3">
+                  <label class="form-label fw-semibold">Password</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                    <input type="password" formControlName="password" class="form-control form-control-lg" placeholder="Create password">
+                  </div>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="mb-3">
+                  <label class="form-label fw-semibold">Confirm Password</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-shield-lock-fill"></i></span>
+                    <input type="password" formControlName="confirmPassword" class="form-control form-control-lg" placeholder="Re-enter password">
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-success w-100 py-2 btn-lg mt-2">
+                  Register
+                </button>
+
+                <p class="text-center mt-3">
+                  Already have an account?
+                  <a routerLink="/login" class="fw-semibold text-success">Login Here</a>
+                </p>
+
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

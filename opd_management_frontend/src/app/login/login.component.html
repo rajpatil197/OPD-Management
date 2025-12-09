@@ -1,0 +1,60 @@
+<div class="container-fluid login-wrapper">
+  <div class="row justify-content-center align-items-center min-vh-100">
+
+    <div class="col-lg-8 col-md-10 p-0">
+      <div class="card login-card shadow-lg border-0">
+
+        <div class="row g-0">
+
+          <!-- LEFT POSTER -->
+          <div class="col-lg-6 login-image d-none d-lg-block">
+            <div class="overlay">
+              <div class="text-white p-4">
+                <h3 class="fw-bold">OPD</h3>
+                <p>Your Health, Your Records, Your Control.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- LOGIN FORM -->
+          <div class="col-lg-6 p-5">
+
+            <div class="text-center mb-4">
+              <img src="assets/img/logo.png" width="60">
+              <h2 class="fw-bold mt-2">Login</h2>
+              <p class="text-muted">Log in to your account</p>
+            </div>
+
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+              <!-- Email -->
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Email</label>
+                <input type="email" formControlName="email" class="form-control form-control-lg" placeholder="Enter your email">
+              </div>
+
+              <!-- Password -->
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Password</label>
+                <input type="password" formControlName="password" class="form-control form-control-lg" placeholder="Enter your password">
+              </div>
+
+              <button class="btn btn-primary w-100 py-2 btn-lg">Log In</button>
+
+              <div class="text-center mt-4">
+                <p>Don't have an account?
+                  <a routerLink="/doctorregister">Sign Up</a>
+                </p>
+              </div>
+
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

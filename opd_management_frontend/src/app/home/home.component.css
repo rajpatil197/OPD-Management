@@ -1,0 +1,27 @@
+/* Hero Section *
+/* Doctor Image */
+.doctor-image {
+  max-height: 380px;
+}
+
+/* Why Choose OPD */
+.card-blue {
+  background: #0d6efd;
+  border-radius: 12px;
+}
+
+.card-white {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+}
+
+.icon-blue {
+  font-size: 48px;
+  color: #0d6efd;
+}
+
+/* Clean button */
+.btn-light {
+  font-weight: bold;
+  border-radius: 30px;
+}

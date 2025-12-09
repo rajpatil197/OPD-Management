@@ -1,0 +1,21 @@
+.patient-card {
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.patient-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* FLOATING BUTTON RIGHT SIDE */
+.floating-btn {
+  position: fixed;
+  right: 25px;
+  bottom: 25px; /* Change to middle: top: 50%; transform: translateY(-50%); */
+  z-index: 1000;
+  padding: 12px 22px;
+  border-radius: 30px;
+  font-size: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
