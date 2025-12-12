@@ -19,6 +19,8 @@ import com.opd_management.Services.DoctorService;
 import com.opd_management.dtos.DoctorDto;
 import com.opd_management.entities.Doctor;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/doctors") // Base endpoint for doctor-related APIs
 @CrossOrigin(origins = "http://localhost:4200") 
@@ -32,7 +34,7 @@ public class DoctorController {
 	// ---------------------- CREATE DOCTOR ----------------------
 	
 	@PostMapping("/")
-	public ResponseEntity<Doctor> SaveDoctor(@RequestBody DoctorDto doctorDto){
+	public ResponseEntity<Doctor> SaveDoctor(@Valid@RequestBody DoctorDto doctorDto){
 		
 		// Mapping data from DTO to Entity
 		Doctor doctor = new Doctor();
@@ -87,7 +89,7 @@ public class DoctorController {
 	// ---------------------- UPDATE DOCTOR ----------------------
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Doctor> UpdateDoctor(@PathVariable("id") int id, @RequestBody DoctorDto doctorDto){
+	public ResponseEntity<Doctor> UpdateDoctor(@Valid@PathVariable("id") int id, @RequestBody DoctorDto doctorDto){
 		
 		Doctor doctor = doctorService.getDoctorById(id);
 		

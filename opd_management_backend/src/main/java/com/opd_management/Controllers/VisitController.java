@@ -22,6 +22,8 @@ import com.opd_management.entities.Doctor;
 import com.opd_management.entities.Patient;
 import com.opd_management.entities.Visit;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/visits") // Base route for Visit module
 public class VisitController {
@@ -39,7 +41,7 @@ public class VisitController {
 	// ---------------------- CREATE VISIT ----------------------
 	
 	@PostMapping("/")
-	public ResponseEntity<Visit> saveVisit(@RequestBody VisitDto visitDto){
+	public ResponseEntity<Visit> saveVisit(@Valid @RequestBody VisitDto visitDto){
 		
 		// Convert DTO to Entity
 		Visit visit = new Visit();
@@ -121,7 +123,7 @@ public class VisitController {
 	// ---------------------- UPDATE VISIT ----------------------
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Visit> updateVisit(@PathVariable("id") int id, @RequestBody VisitDto visitDto){
+	public ResponseEntity<Visit> updateVisit(@PathVariable("id") int id,@Valid  @RequestBody VisitDto visitDto){
 		
 		Visit visit = visitService.GetVisitById(id);
 		

@@ -20,6 +20,8 @@ import com.opd_management.dtos.ReferralCenterDto;
 import com.opd_management.entities.Doctor;
 import com.opd_management.entities.ReferralCenter;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/referralCenters") // Base path for all referral center APIs
 public class ReferralCenterController {
@@ -34,7 +36,7 @@ public class ReferralCenterController {
 	// ---------------------- CREATE REFERRAL CENTER ----------------------
 	
 	@PostMapping("/")
-	public ResponseEntity<ReferralCenter> saveReferralCenter(@RequestBody ReferralCenterDto referralCenterDto){
+	public ResponseEntity<ReferralCenter> saveReferralCenter(@Valid @RequestBody ReferralCenterDto referralCenterDto){
 		
 		// Map DTO fields to entity
 		ReferralCenter referralCenter = new ReferralCenter();
@@ -90,7 +92,7 @@ public class ReferralCenterController {
 	// ---------------------- UPDATE REFERRAL CENTER ----------------------
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<ReferralCenter> updateReferralCenter(@PathVariable("id") int id, @RequestBody ReferralCenterDto referralCenterDto){
+	public ResponseEntity<ReferralCenter> updateReferralCenter(@PathVariable("id") int id,@Valid  @RequestBody ReferralCenterDto referralCenterDto){
 		
 		ReferralCenter referralCenter = referralCenterService.GetReferralCenterById(id);
 		

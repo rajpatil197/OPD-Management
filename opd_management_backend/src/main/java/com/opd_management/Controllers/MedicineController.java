@@ -20,6 +20,8 @@ import com.opd_management.dtos.MedicineDto;
 import com.opd_management.entities.Doctor;
 import com.opd_management.entities.Medicine;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/medicines") // Base URL for medicine APIs
 public class MedicineController {
@@ -33,7 +35,7 @@ public class MedicineController {
 	// ---------------------- CREATE MEDICINE ----------------------
 	
 	@PostMapping("/")
-	public ResponseEntity<Medicine> SaveMedicine(@RequestBody MedicineDto medicineDto){
+	public ResponseEntity<Medicine> SaveMedicine(@Valid@RequestBody MedicineDto medicineDto){
 		
 		// Map DTO to Entity
 		Medicine medicine = new Medicine();
@@ -86,7 +88,7 @@ public class MedicineController {
 	// ---------------------- UPDATE MEDICINE ----------------------
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Medicine> UpdateMedicineById(@PathVariable("id") int id, @RequestBody MedicineDto medicineDto){
+	public ResponseEntity<Medicine> UpdateMedicineById(@Valid@PathVariable("id") int id, @RequestBody MedicineDto medicineDto){
 		
 		Medicine medicine = medicineService.GetMedicineById(id);
 		

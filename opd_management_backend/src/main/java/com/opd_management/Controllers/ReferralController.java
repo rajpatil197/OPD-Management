@@ -26,6 +26,8 @@ import com.opd_management.entities.Referral;
 import com.opd_management.entities.ReferralCenter;
 import com.opd_management.entities.Visit;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/referrals") // Base URL for referral-related requests
 public class ReferralController {
@@ -49,7 +51,7 @@ public class ReferralController {
 	// ---------------------- CREATE REFERRAL ----------------------
 	
 	@PostMapping("/")
-	public ResponseEntity<Referral> saveReferral(@RequestBody ReferralDto referralDto){
+	public ResponseEntity<Referral> saveReferral(@Valid @RequestBody ReferralDto referralDto){
 		
 		// Mapping DTO to Entity
 		Referral referral = new Referral();
@@ -111,7 +113,7 @@ public class ReferralController {
 	// ---------------------- UPDATE REFERRAL ----------------------
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Referral> updateReferral(@PathVariable("id") int id, @RequestBody ReferralDto referralDto){
+	public ResponseEntity<Referral> updateReferral(@PathVariable("id") int id, @Valid  @RequestBody ReferralDto referralDto){
 		
 		Referral referral = referralService.GetReferralById(id);
 		

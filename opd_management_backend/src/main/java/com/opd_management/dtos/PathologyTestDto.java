@@ -2,14 +2,32 @@ package com.opd_management.dtos;
 
 import java.sql.Date;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Positive;
+
 public class PathologyTestDto {
 
-	private String result;
-	private String remarks;
-	private String report_file;
-	private Date created_at;
-	private int visitid;
-	private int testmasterid;
+	 @NotBlank(message = "Result is required")
+	 private String result;
+
+	 private String remarks;
+
+	 @NotBlank(message = "Report file path is required")
+	 private String report_file;
+
+	 @NotNull(message = "Created date is required")
+	 @PastOrPresent(message = "date must present or past")
+	 private Date created_at;
+
+	 @Positive(message = "Visit ID must be a positive integer")
+	 @NotNull(message = "visitid must be required")
+	 private int visitid;
+
+	 @NotNull(message = "testMAster id must be required")
+	 @Positive(message = "Test Master ID must be a positive integer")
+	 private int testmasterid;
 	
 	
 	public String getResult() {

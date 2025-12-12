@@ -22,6 +22,8 @@ import com.opd_management.entities.Diagnostic;
 import com.opd_management.entities.Doctor;
 import com.opd_management.entities.Visit;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/diagnostics") // Base API path for diagnostic-related operations
 public class DiagnosticController {
@@ -38,7 +40,7 @@ public class DiagnosticController {
 	// ---------------------- CREATE DIAGNOSTIC ----------------------
 	
 	@PostMapping("/")
-	public ResponseEntity<Diagnostic> SaveDiagnostic(@RequestBody DiagnosticDto diagnosticDto){
+	public ResponseEntity<Diagnostic> SaveDiagnostic(@Valid@RequestBody DiagnosticDto diagnosticDto){
 		
 		// Create Diagnostic entity and set values from DTO
 		Diagnostic diagnostic = new Diagnostic();
@@ -90,7 +92,7 @@ public class DiagnosticController {
 	// ---------------------- UPDATE DIAGNOSTIC ----------------------
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Diagnostic> UpdateDiagnostic(@PathVariable("id") int id, @RequestBody DiagnosticDto diagnosticDto){
+	public ResponseEntity<Diagnostic> UpdateDiagnostic(@Valid@PathVariable("id") int id, @RequestBody DiagnosticDto diagnosticDto){
 		
 		Diagnostic diagnostic = diagnosticsService.GetDiagnosticByID(id);
 

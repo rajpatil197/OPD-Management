@@ -20,6 +20,8 @@ import com.opd_management.dtos.ReceptionDto;
 import com.opd_management.entities.Doctor;
 import com.opd_management.entities.Reception;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/receptions") // Base endpoint for receptionist management
 public class ReceptionController {
@@ -34,7 +36,7 @@ public class ReceptionController {
     // ---------------------- CREATE RECEPTION STAFF ----------------------
     
     @PostMapping("/")
-    public ResponseEntity<Reception> saveReception(@RequestBody ReceptionDto receptionDto) {
+    public ResponseEntity<Reception> saveReception(@Valid @RequestBody ReceptionDto receptionDto) {
 
         // Map DTO → Entity
         Reception reception = new Reception();
@@ -90,7 +92,7 @@ public class ReceptionController {
     // ---------------------- UPDATE RECEPTION STAFF ----------------------
 
     @PutMapping("/{id}")
-    public ResponseEntity<Reception> updateReception(@PathVariable("id") int id, @RequestBody ReceptionDto receptionDto) {
+    public ResponseEntity<Reception> updateReception(@PathVariable("id") int id,@Valid  @RequestBody ReceptionDto receptionDto) {
 
         Reception reception = receptionService.GetReceptionById(id);
 

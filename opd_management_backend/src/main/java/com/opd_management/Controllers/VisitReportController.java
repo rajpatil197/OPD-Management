@@ -20,6 +20,8 @@ import com.opd_management.dtos.VisitReportDto;
 import com.opd_management.entities.Visit;
 import com.opd_management.entities.VisitReport;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/visitreports") // Base API path for VisitReport operations
 public class VisitReportController {
@@ -34,7 +36,7 @@ public class VisitReportController {
 	// ---------------------- CREATE VISIT REPORT ----------------------
 	
 	@PostMapping("/")
-	public ResponseEntity<VisitReport> saveVisitReport(@RequestBody VisitReportDto visitReportDto){
+	public ResponseEntity<VisitReport> saveVisitReport(@Valid @RequestBody VisitReportDto visitReportDto){
 		
 		// Mapping DTO -> Entity
 		VisitReport visitReport = new VisitReport();
@@ -87,7 +89,7 @@ public class VisitReportController {
 	// ---------------------- UPDATE REPORT ----------------------
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<VisitReport> updateVisitReport(@PathVariable("id") int id, @RequestBody VisitReportDto visitReportDto){
+	public ResponseEntity<VisitReport> updateVisitReport(@PathVariable("id") int id,@Valid  @RequestBody VisitReportDto visitReportDto){
 		
 		VisitReport report = visitReportService.GetVisitReportById(id);
 		

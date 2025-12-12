@@ -21,6 +21,8 @@ import com.opd_management.dtos.PatientDto;
 import com.opd_management.entities.Doctor;
 import com.opd_management.entities.Patient;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/patients") // Base URL for patient API
 @CrossOrigin(origins = "http://localhost:4200") 
@@ -36,7 +38,7 @@ public class PatientController {
 	// ---------------------- CREATE PATIENT ----------------------
 	
 	@PostMapping("/")
-	public ResponseEntity<Patient> savePatient(@RequestBody PatientDto patientDto){
+	public ResponseEntity<Patient> savePatient(@Valid @RequestBody PatientDto patientDto){
 		
 		// Mapping DTO data to entity
 		Patient patient = new Patient();
@@ -97,7 +99,7 @@ public class PatientController {
 	// ---------------------- UPDATE PATIENT ----------------------
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Patient> updatePatient(@PathVariable("id") int id, @RequestBody PatientDto patientDto){
+	public ResponseEntity<Patient> updatePatient(@PathVariable("id") int id,@Valid  @RequestBody PatientDto patientDto){
 		
 		Patient patient = patientService.getPatientByID(id);
 		
@@ -147,7 +149,7 @@ public class PatientController {
 		
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT); // Correct delete response
 	}
-	
+	// ---------------------- GET PATIENT BY DOCTOR ID ----------------------
 	@GetMapping("/doctor/{doctorId}")
 	public ResponseEntity<List<Patient>> getPatientsByDoctor(@PathVariable int doctorId) {
 

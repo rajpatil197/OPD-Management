@@ -2,20 +2,60 @@ package com.opd_management.dtos;
 
 import java.sql.Date;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
+
 public class PatientDto {
 
-	private String patient_name;
-	private int age;
-	private String gender;
-	private String mobileno;
-	private String address;
-	private String blood_group;
-	private String height;
-	private String smoking;
-	private String alcohol;
-	private String tobacco;
-	private Date created_at;
-	private int doctorid;
+	 @NotBlank(message = "Patient name is required")
+	 private String patient_name;
+
+	 	@Positive(message = "Age must be positive")
+	    @Min(value = 0, message = "Age cannot be negative")
+	    private int age;
+
+	    @NotBlank(message = "Gender is required")
+	    private String gender;
+
+	    @NotBlank(message = "Mobile number is required")
+	    @Pattern(regexp = "^[0-9]{10}$", message = "Mobile number must be exactly 10 digits")
+	    private String mobileno;
+
+	    @NotBlank(message = "Address is required")
+	    private String address;
+
+	    @NotBlank(message = "Blood group is required")
+	    @Pattern(regexp = "^(A|B|AB|O)[+-]$", message = "Invalid blood group format")
+	    private String blood_group;
+
+	    @NotBlank(message = "Height is required")
+	    private String height;
+	    
+	    @NotBlank(message = "Smoking field is required")
+	    @Pattern(regexp = "^(Yes|No)$",message = "Value must be yes or no")
+	    private String smoking;   // optional
+	    
+	    @NotBlank(message = "Alcohol field is required")
+	    @Pattern(regexp = "^(Yes|No)$",message = "Value must be yes or no")
+	    private String alcohol;   // optional
+	    
+	    @NotBlank(message = "Tobacco field is required")
+	    @Pattern(regexp = "^(Yes|No)$",message = "Value must be yes or no")
+	    private String tobacco;   // optional
+
+	    @NotNull(message = "Created date is required")
+	    @PastOrPresent(message = "Date must past or present")
+	    private Date created_at;
+
+	    @Positive(message = "Doctor ID must be a positive number")
+	    @NotNull(message = "Id must be not null")
+	    private int doctorid;
+
+	    
 	
 	//getter and setter 
 	public String getPatient_name() {

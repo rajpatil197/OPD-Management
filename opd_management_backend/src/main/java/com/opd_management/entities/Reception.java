@@ -20,7 +20,7 @@ public class Reception {
 	private int id;
 	private String name;
 	private String email;
-	private long phoneNo;
+	private String phoneNo;
 	private String shift;
 	private String password;
 	
@@ -54,11 +54,11 @@ public class Reception {
 		this.email = email;
 	}
 
-	public long getPhoneNo() {
+	public String getPhoneNo() {
 		return phoneNo;
 	}
 
-	public void setPhoneNo(long phoneNo) {
+	public void setPhoneNo(String phoneNo) {
 		this.phoneNo = phoneNo;
 	}
 
@@ -86,7 +86,7 @@ public class Reception {
 		this.doctorid = doctorid;
 	}
 
-	public Reception(int id, String name, String email, long phoneNo, String shift, String password, Doctor doctorid) {
+	public Reception(int id, String name, String email, String phoneNo, String shift, String password, Doctor doctorid) {
 		super();
 		this.id = id;
 		this.name = name;
