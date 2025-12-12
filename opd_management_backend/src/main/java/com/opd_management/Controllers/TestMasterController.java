@@ -20,6 +20,8 @@ import com.opd_management.dtos.TestMasterDto;
 import com.opd_management.entities.Doctor;
 import com.opd_management.entities.TestMaster;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/testmasters") // Base API endpoint for Test Master records
 public class TestMasterController {
@@ -34,7 +36,7 @@ public class TestMasterController {
 	// ---------------------- CREATE TEST MASTER ----------------------
 	
 	@PostMapping("/")
-	public ResponseEntity<TestMaster> saveTestMaster(@RequestBody TestMasterDto testMasterDto){
+	public ResponseEntity<TestMaster> saveTestMaster(@Valid @RequestBody TestMasterDto testMasterDto){
 		
 		// Map DTO to Entity
 		TestMaster testMaster = new TestMaster();
@@ -88,7 +90,7 @@ public class TestMasterController {
 	// ---------------------- UPDATE TEST MASTER ----------------------
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<TestMaster> updateTestMaster(@PathVariable("id") int id, @RequestBody TestMasterDto testMasterDto){
+	public ResponseEntity<TestMaster> updateTestMaster(@PathVariable("id") int id,@Valid @RequestBody TestMasterDto testMasterDto){
 		
 		TestMaster testMaster = testMasterService.GetTestMasterById(id);
 		

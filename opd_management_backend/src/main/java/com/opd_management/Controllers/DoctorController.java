@@ -89,7 +89,7 @@ public class DoctorController {
 	// ---------------------- UPDATE DOCTOR ----------------------
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Doctor> UpdateDoctor(@Valid@PathVariable("id") int id, @RequestBody DoctorDto doctorDto){
+	public ResponseEntity<Doctor> UpdateDoctor(@PathVariable("id") int id, @Valid @RequestBody DoctorDto doctorDto){
 		
 		Doctor doctor = doctorService.getDoctorById(id);
 		
@@ -140,7 +140,7 @@ public class DoctorController {
 	// ---------------------- DOCTOR LOGIN ----------------------
 
 	@PostMapping("/login")
-	public ResponseEntity<Doctor> loginDoctor(@RequestBody DoctorDto loginRequest) {
+	public ResponseEntity<Doctor> loginDoctor(@Valid @RequestBody DoctorDto loginRequest) {
 
 	    // Step 1: Find doctor by email
 	    Doctor doctor = doctorService.getDoctorByEmail(loginRequest.getEmail());

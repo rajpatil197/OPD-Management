@@ -88,7 +88,7 @@ public class MedicineController {
 	// ---------------------- UPDATE MEDICINE ----------------------
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Medicine> UpdateMedicineById(@Valid@PathVariable("id") int id, @RequestBody MedicineDto medicineDto){
+	public ResponseEntity<Medicine> UpdateMedicineById(@PathVariable("id") int id,@Valid @RequestBody MedicineDto medicineDto){
 		
 		Medicine medicine = medicineService.GetMedicineById(id);
 		
