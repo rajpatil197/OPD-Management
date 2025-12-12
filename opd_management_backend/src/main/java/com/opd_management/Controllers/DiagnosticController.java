@@ -92,7 +92,7 @@ public class DiagnosticController {
 	// ---------------------- UPDATE DIAGNOSTIC ----------------------
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Diagnostic> UpdateDiagnostic(@Valid@PathVariable("id") int id, @RequestBody DiagnosticDto diagnosticDto){
+	public ResponseEntity<Diagnostic> UpdateDiagnostic(@PathVariable("id") int id,@Valid @RequestBody DiagnosticDto diagnosticDto){
 		
 		Diagnostic diagnostic = diagnosticsService.GetDiagnosticByID(id);
 

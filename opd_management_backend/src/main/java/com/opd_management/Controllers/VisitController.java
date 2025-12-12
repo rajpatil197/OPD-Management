@@ -123,7 +123,7 @@ public class VisitController {
 	// ---------------------- UPDATE VISIT ----------------------
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Visit> updateVisit(@PathVariable("id") int id,@Valid  @RequestBody VisitDto visitDto){
+	public ResponseEntity<Visit> updateVisit(@PathVariable("id") int id, @Valid  @RequestBody VisitDto visitDto){
 		
 		Visit visit = visitService.GetVisitById(id);
 		

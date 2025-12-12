@@ -75,7 +75,7 @@ public class BillController {
 	// ---------------------- Get Bill By ID ----------------------
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Bill> GetBillById(@Valid@PathVariable("id") int id){
+	public ResponseEntity<Bill> GetBillById(@PathVariable("id") int id){
 		
 		Bill bill = billService.GetBillById(id);
 		
@@ -89,7 +89,7 @@ public class BillController {
 	// ---------------------- Update Bill ----------------------
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Bill> UpdateBill(@PathVariable("id") int id, @RequestBody BillDto billDto){
+	public ResponseEntity<Bill> UpdateBill(@PathVariable("id") int id, @Valid @RequestBody BillDto billDto){
 		
 		Bill bill = billService.GetBillById(id);
 		
