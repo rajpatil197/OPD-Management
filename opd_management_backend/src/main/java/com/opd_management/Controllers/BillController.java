@@ -20,6 +20,8 @@ import com.opd_management.dtos.BillDto;
 import com.opd_management.entities.Bill;
 import com.opd_management.entities.Visit;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/bills") // Base URL for bill-related APIs
 public class BillController {
@@ -33,7 +35,7 @@ public class BillController {
 	// ---------------------- Create Bill ----------------------
 	
 	@PostMapping("/")
-	public ResponseEntity<Bill> saveBill(@RequestBody BillDto billDto){
+	public ResponseEntity<Bill> saveBill(@Valid@RequestBody BillDto billDto){
 		
 		// Create new Bill entity and set values from DTO
 		Bill bill = new Bill();
@@ -73,7 +75,7 @@ public class BillController {
 	// ---------------------- Get Bill By ID ----------------------
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Bill> GetBillById(@PathVariable("id") int id){
+	public ResponseEntity<Bill> GetBillById(@Valid@PathVariable("id") int id){
 		
 		Bill bill = billService.GetBillById(id);
 		

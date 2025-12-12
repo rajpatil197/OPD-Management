@@ -2,11 +2,24 @@ package com.opd_management.dtos;
 
 import java.sql.Date;
 
-public class DiagnosticDto {
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
+public class DiagnosticDto {
+	
+	@NotBlank(message = "Diagnostic name is required")
 	private String name;
+
+	@NotNull(message = "Created date is required")
 	private Date created_at;
+
+	@Positive(message = "Doctor ID must be a positive integer")
+	@NotNull(message = "Doctorid must be required")
 	private int doctorid;
+
+	@NotNull(message = "visitid must be required")
+	@Positive(message = "Visit ID must be a positive integer")
 	private int visitid;
 	
 	public String getName() {

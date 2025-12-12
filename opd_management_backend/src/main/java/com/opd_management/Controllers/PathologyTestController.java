@@ -22,6 +22,8 @@ import com.opd_management.entities.PathologyTest;
 import com.opd_management.entities.TestMaster;
 import com.opd_management.entities.Visit;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/pathologytest") // Base path for all PathologyTest APIs
 public class PathologyTestController {
@@ -38,7 +40,7 @@ public class PathologyTestController {
 	// ---------------------- CREATE PATHOLOGY TEST ----------------------
 	
 	@PostMapping("/")
-	public ResponseEntity<PathologyTest> savePathologyTest(@RequestBody PathologyTestDto pathologyTestDto){
+	public ResponseEntity<PathologyTest> savePathologyTest(@Valid @RequestBody PathologyTestDto pathologyTestDto){
 		
 		// Convert DTO to Entity
 		PathologyTest pathologyTest = new PathologyTest();
@@ -94,7 +96,7 @@ public class PathologyTestController {
 	// ---------------------- UPDATE PATHOLOGY TEST ----------------------
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<PathologyTest> UpdatePathologyTest(@PathVariable("id") int id, @RequestBody PathologyTestDto pathologyTestDto){
+	public ResponseEntity<PathologyTest> UpdatePathologyTest( @PathVariable("id") int id, @Valid @RequestBody PathologyTestDto pathologyTestDto){
 		
 		PathologyTest pathologyTest = pathologyTestService.GetPathologyTestById(id);
 		
