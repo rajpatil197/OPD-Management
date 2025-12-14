@@ -1,3 +1,12 @@
-body {
+/* body {
   background: #f0f2f5; /* Light Modern Background */
+ */
+
+.login-image {
+  background-image: url('/assets/img/doctors/doctors-4.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100%;
+  position: relative;
 }

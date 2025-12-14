@@ -1,0 +1,19 @@
+.reception-sidebar {
+  width: 240px;
+  min-height: 100vh;
+}
+
+.reception-sidebar .nav-link {
+  padding: 12px 16px;
+  font-weight: 500;
+}
+
+.reception-sidebar .nav-link.active {
+  background: rgba(255,255,255,0.2);
+  border-radius: 6px;
+}
+
+.reception-content {
+  background: #f4f7fb;
+  min-height: 100vh;
+}

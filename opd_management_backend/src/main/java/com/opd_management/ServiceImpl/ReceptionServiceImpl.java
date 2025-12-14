@@ -39,4 +39,16 @@ public class ReceptionServiceImpl implements ReceptionService {
 		receptionRepository.deleteById(id);
 	}
 
+	@Override
+	public List<Reception> GetReceptionsByDoctor(int doctorid) {
+		// TODO Auto-generated method stub
+		return receptionRepository.findByDoctorid_Id(doctorid);
+	}
+
+	@Override
+	public Reception getReceptionByEmail(String email) {
+		// TODO Auto-generated method stub
+		return receptionRepository.findByEmail(email);
+	}
+
 }

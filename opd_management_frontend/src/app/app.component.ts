@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,15 +11,27 @@ export class AppComponent {
   showHeader = true;
 
   constructor(private router: Router) {
-    router.events.subscribe(() => {
-      const noHeaderRoutes = [
-        '/dashboard',
-        '/patients',
-        '/add-patient'
-      ];
 
-      this.showHeader = !noHeaderRoutes.includes(router.url);
+    this.router.events.subscribe(event => {
+
+      // ✅ Only react after navigation ends
+      if (event instanceof NavigationEnd) {
+
+        const noHeaderRoutes = [
+          '/doctor/dashboard',
+          '/doctor/patients',
+          '/doctor/reception-list',
+          '/doctor/add-reception',
+          '/reception/dashboard',
+          '/reception/add-patient',
+          '/reception/patients'
+        ];
+
+        this.showHeader = !noHeaderRoutes.some(route =>
+          event.urlAfterRedirects.startsWith(route)
+        );
+      }
+
     });
   }
-
 }

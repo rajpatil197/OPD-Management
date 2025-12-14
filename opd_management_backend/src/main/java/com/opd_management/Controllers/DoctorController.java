@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.opd_management.Services.DoctorService;
 import com.opd_management.dtos.DoctorDto;
+import com.opd_management.dtos.DoctorLoginDto;
 import com.opd_management.entities.Doctor;
 
 import jakarta.validation.Valid;
@@ -140,22 +141,19 @@ public class DoctorController {
 	// ---------------------- DOCTOR LOGIN ----------------------
 
 	@PostMapping("/login")
-	public ResponseEntity<Doctor> loginDoctor(@Valid @RequestBody DoctorDto loginRequest) {
+	public ResponseEntity<Doctor> loginDoctor(
+	        @Valid @RequestBody DoctorLoginDto loginDto) {
 
-	    // Step 1: Find doctor by email
-	    Doctor doctor = doctorService.getDoctorByEmail(loginRequest.getEmail());
+	    Doctor doctor = doctorService.getDoctorByEmail(loginDto.getEmail());
 
 	    if (doctor == null) {
-	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);   // Email not found
+	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	    }
 
-	    // Step 2: Validate password
-	    if (!doctor.getPassword().equals(loginRequest.getPassword())) {
-	        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED); // Wrong password
+	    if (!doctor.getPassword().equals(loginDto.getPassword())) {
+	        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 	    }
 
-	    // Step 3: Return doctor details
 	    return new ResponseEntity<>(doctor, HttpStatus.OK);
 	}
-
 }

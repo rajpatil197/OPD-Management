@@ -10,4 +10,8 @@ public interface ReceptionService {
 	List<Reception> GetAllReception();
 	Reception GetReceptionById(int id);
 	void DeleteReception(int id);
+	
+	List<Reception> GetReceptionsByDoctor(int doctorid);
+	
+	Reception getReceptionByEmail(String email);
 }

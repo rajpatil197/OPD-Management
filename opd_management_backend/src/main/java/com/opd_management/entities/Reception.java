@@ -24,10 +24,10 @@ public class Reception {
 	private String shift;
 	private String password;
 	
-	@ManyToOne
-	@JoinColumn(name="doctorId")
-	@JsonIgnoreProperties(value="{doctorid}",allowSetters = true)
-	private Doctor doctorid;
+	 @ManyToOne
+	 @JoinColumn(name="doctor_id")
+	 @JsonIgnoreProperties({"patients","receptions"})
+	 private Doctor doctorid;
 
 	
 	public int getId() {
