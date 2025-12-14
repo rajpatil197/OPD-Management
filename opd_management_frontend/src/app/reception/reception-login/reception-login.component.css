@@ -1,0 +1,20 @@
+.login-wrapper {
+  background: #f4f7fb;
+}
+
+.login-card {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.login-image {
+  background: url('/assets/img/about.jpg') center/cover no-repeat;
+  position: relative;
+}
+
+.login-image .overlay {
+  background: rgba(0, 0, 0, 0.6);
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+}

@@ -1,38 +1,61 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HeaderComponent } from './header/header.component';
+
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { DoctorRegisterComponent } from './doctor-register/doctor-register.component';
+
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PatientListComponent } from './patient-list/patient-list.component';
-import { AddPatientComponent } from './add-patient/add-patient.component';
+import { AddPatientComponent } from './reception/add-patient/add-patient.component';
+
 import { DoctorLayoutComponent } from './layout/doctor-layout/doctor-layout.component';
 import { authGuard } from './auth.guard';
 
+import { ReceptionLoginComponent } from './reception/reception-login/reception-login.component';
+import { ReceptionDashboardComponent } from './reception/reception-dashboard/reception-dashboard.component';
+import { ReceptionListComponent } from './reception/reception-list/reception-list.component';
+import { AddReceptionComponent } from './reception/add-reception/add-reception.component';
+
+import { ReceptionAuthGuard } from './guards/reception-auth.guard';
+import { ReceptionLayoutComponent } from './reception/reception-layout/reception-layout.component';
 
 const routes: Routes = [
 
-  // PAGES WITHOUT SIDEBAR
-  { path: "", component: HomeComponent },
-  { path: "home", component: HomeComponent },
-  { path: "login", component: LoginComponent },
-  { path: "doctorregister", component: DoctorRegisterComponent },
+  // ---------------- PUBLIC ROUTES ----------------
+  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'doctorregister', component: DoctorRegisterComponent },
+  { path: 'reception-login', component: ReceptionLoginComponent },
 
-  // PAGES WITH SIDEBAR (dashboard routes)
+  // ---------------- DOCTOR PANEL ----------------
   {
-    path: "",
+    path: 'doctor',
     component: DoctorLayoutComponent,
     canActivate: [authGuard],
     children: [
-      { path: "dashboard", component: DashboardComponent },
-      { path: "patients", component: PatientListComponent },
-      { path: "add-patient", component: AddPatientComponent }
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'patients', component: PatientListComponent },
+      { path: 'reception-list', component: ReceptionListComponent },
+      {path:'add-patient',component:AddPatientComponent},
+      {path:'add-reception',component:AddReceptionComponent}
     ]
-  }
+  },
+
+  // ---------------- RECEPTION PANEL ----------------
+  {
+  path: 'reception',
+  component: ReceptionLayoutComponent,
+  canActivate: [ReceptionAuthGuard],
+  children: [
+    { path: 'dashboard', component: ReceptionDashboardComponent },
+    { path: 'patients', component: PatientListComponent },
+    { path: 'add-patient', component: AddPatientComponent }
+  ]
+}
 
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

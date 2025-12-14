@@ -13,25 +13,38 @@ export class PatientListComponent implements OnInit {
   constructor(private patientService: PatientService) {}
 
   ngOnInit(): void {
-    this.loadPatientsOfLoggedInDoctor();
+    this.loadPatients();
   }
 
-  loadPatientsOfLoggedInDoctor() {
-    //Get the logged-in doctor ID from localStorage
-    const doctorId = Number(localStorage.getItem("doctorId"));
+  loadPatients() {
 
+    let doctorId: number | null = null;
+
+    // 🔹 CASE 1: Doctor logged in
+    const doctor = localStorage.getItem('doctor');
+    if (doctor) {
+      doctorId = JSON.parse(doctor).id;
+    }
+
+    // 🔹 CASE 2: Reception logged in
+    const reception = localStorage.getItem('reception');
+    if (!doctorId && reception) {
+      doctorId = JSON.parse(reception).doctorid?.id;
+    }
+
+    // 🔴 NO AUTH
     if (!doctorId) {
-      alert("Doctor not logged in!");
+      alert('Unauthorized access');
       return;
     }
 
-    // Fetch patients assigned only to this doctor
+    // ✅ Fetch patients of that doctor
     this.patientService.getPatientsByDoctor(doctorId).subscribe({
       next: (res) => {
         this.patients = res;
       },
       error: () => {
-        alert("No patients found for this doctor");
+        alert('No patients found');
       }
     });
   }

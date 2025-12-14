@@ -42,7 +42,7 @@ export class LoginComponent {
         localStorage.setItem("doctorId", doctor.id.toString());
 
         // Redirect to dashboard
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/doctor/dashboard']);
       },
       error: (err) => {
         if (err.status === 404) {

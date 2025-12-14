@@ -1,0 +1,80 @@
+<div class="container-fluid">
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+
+      <div class="card shadow border-0">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">Register Reception</h4>
+        </div>
+
+        <div class="card-body">
+
+          <form (ngSubmit)="saveReception()">
+
+            <!-- Name -->
+            <div class="mb-3">
+              <label class="form-label">Reception Name</label>
+              <input type="text" class="form-control"
+                     [(ngModel)]="reception.name"
+                     name="name" required>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control"
+                     [(ngModel)]="reception.email"
+                     name="email" required>
+            </div>
+
+            <!-- Phone -->
+            <div class="mb-3">
+              <label class="form-label">Phone Number</label>
+              <input type="text" class="form-control"
+                     [(ngModel)]="reception.phoneNo"
+                     name="phoneNo" required>
+            </div>
+
+            <!-- Shift -->
+            <div class="mb-3">
+              <label class="form-label">Shift</label>
+              <select class="form-select"
+                      [(ngModel)]="reception.shift"
+                      name="shift" required>
+                <option value="">Select shift</option>
+                <option>Morning</option>
+                <option>Evening</option>
+                <option>Full Day</option>
+              </select>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-3">
+              <label class="form-label">Password</label>
+              <input type="password" class="form-control"
+                     [(ngModel)]="reception.password"
+                     name="password" required>
+            </div>
+
+            <!-- Buttons -->
+            <div class="d-flex justify-content-between">
+              <button type="submit" class="btn btn-success">
+                Save Reception
+              </button>
+
+              <button type="button" class="btn btn-secondary"
+                      routerLink="/doctor/reception-list">
+                Cancel
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

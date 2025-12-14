@@ -11,8 +11,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PatientListComponent } from './patient-list/patient-list.component';
-import { AddPatientComponent } from './add-patient/add-patient.component';
+import { AddPatientComponent } from './reception/add-patient/add-patient.component';
 import { DoctorLayoutComponent } from './layout/doctor-layout/doctor-layout.component';
+import { ReceptionListComponent } from './reception/reception-list/reception-list.component';
+import { AddReceptionComponent } from './reception/add-reception/add-reception.component';
+import { ReceptionLoginComponent } from './reception/reception-login/reception-login.component';
+import { ReceptionDashboardComponent } from './reception/reception-dashboard/reception-dashboard.component';
+import { ReceptionLayoutComponent } from './reception/reception-layout/reception-layout.component';
+
 
 @NgModule({
   declarations: [
@@ -25,6 +31,11 @@ import { DoctorLayoutComponent } from './layout/doctor-layout/doctor-layout.comp
     PatientListComponent,
     AddPatientComponent,
     DoctorLayoutComponent,
+    ReceptionListComponent,
+    AddReceptionComponent,
+    ReceptionLoginComponent,
+    ReceptionDashboardComponent,
+    ReceptionLayoutComponent
   ],
   imports: [
     BrowserModule,
