@@ -1,11 +1,12 @@
 <div class="sidebar bg-primary text-white p-3">
 
-  <!-- DOCTOR PROFILE SECTION -->
-  <div class="doctor-profile text-center mb-4">
+  <!-- DOCTOR PROFILE (CLICKABLE) -->
+  <div class="doctor-profile text-center mb-4 cursor-pointer"
+       data-bs-toggle="modal"
+       data-bs-target="#doctorProfileModal">
 
-   <img src="assets/img/doctors/doctors.png" 
-     class="profile-pic mb-2">
-
+    <img src="assets/img/doctors/doctors.png"
+         class="profile-pic mb-2">
 
     <h5 class="fw-bold">{{ doctor?.name }}</h5>
     <p class="small mb-0">{{ doctor?.email }}</p>
@@ -14,7 +15,7 @@
     <hr class="bg-light">
   </div>
 
-  <!-- MENU ITEMS HERE -->
+  <!-- MENU -->
   <ul class="nav flex-column">
     <li class="nav-item">
       <a routerLink="/doctor/dashboard" class="nav-link text-white">
@@ -29,8 +30,8 @@
     </li>
 
     <li class="nav-item">
-     <a routerLink="/doctor/reception-list" class="nav-link text-white">
-    <i class="bi bi-person-badge-fill"></i> Reception
+      <a routerLink="/doctor/reception-list" class="nav-link text-white">
+        <i class="bi bi-person-badge-fill"></i> Reception
       </a>
     </li>
   </ul>
@@ -38,9 +39,74 @@
   <button class="btn btn-light w-100 mt-4" (click)="logout()">
     <i class="bi bi-box-arrow-right"></i> Logout
   </button>
-
 </div>
 
 <div class="main-content">
   <router-outlet></router-outlet>
+</div>
+
+<!-- ================= DOCTOR PROFILE MODAL ================= -->
+<div class="modal fade" id="doctorProfileModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">Doctor Profile</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <form>
+
+          <div class="row g-3">
+
+            <div class="col-md-6">
+              <label class="form-label">Name</label>
+              <input class="form-control" [(ngModel)]="doctor.name" name="name">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Email</label>
+              <input class="form-control" [(ngModel)]="doctor.email" name="email">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Specialization</label>
+              <input class="form-control" [(ngModel)]="doctor.specialization" name="specialization">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Clinic Name</label>
+              <input class="form-control" [(ngModel)]="doctor.clinic_name" name="clinic_name">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Mobile</label>
+              <input class="form-control" [(ngModel)]="doctor.mobileno" name="mobileno">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Address</label>
+              <input class="form-control" [(ngModel)]="doctor.address" name="address">
+            </div>
+
+          </div>
+
+        </form>
+
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-danger me-auto" (click)="deleteProfile()">
+          <i class="bi bi-trash"></i> Delete Profile
+        </button>
+
+        <button class="btn btn-success " data-bs-dismiss="modal" (click)="updateProfile()">
+          <i class="bi bi-save"></i> Update Profile
+        </button>
+      </div>
+
+    </div>
+  </div>
 </div>
