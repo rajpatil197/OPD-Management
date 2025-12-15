@@ -19,6 +19,7 @@
             <th>Email</th>
             <th>Phone</th>
             <th>Shift</th>
+            <th>Actions</th>
           </tr>
         </thead>
 
@@ -29,10 +30,21 @@
             <td>{{ r.email }}</td>
             <td>{{ r.phoneNo }}</td>
             <td>{{ r.shift }}</td>
+            <td>
+              <button class="btn btn-sm btn-warning me-2"
+                      (click)="openEditModal(r)">
+                <i class="bi bi-pencil"></i>
+              </button>
+
+              <button class="btn btn-sm btn-danger"
+                      (click)="deleteReception(r.id)">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
           </tr>
 
           <tr *ngIf="receptions.length === 0">
-            <td colspan="5" class="text-muted">No reception staff found</td>
+            <td colspan="6" class="text-muted">No reception staff found</td>
           </tr>
         </tbody>
 
@@ -40,5 +52,49 @@
 
     </div>
   </div>
+</div>
 
+<!-- ================= EDIT MODAL ================= -->
+<div class="modal fade" id="editReceptionModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Reception</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <input class="form-control mb-2"
+               [(ngModel)]="selectedReception.name"
+               placeholder="Name">
+
+        <input class="form-control mb-2"
+               [(ngModel)]="selectedReception.email"
+               placeholder="Email">
+
+        <input class="form-control mb-2" type="password"
+               [(ngModel)]="selectedReception.password"
+               placeholder="Password">
+
+
+        <input class="form-control mb-2"
+               [(ngModel)]="selectedReception.phoneNo"
+               placeholder="Phone">
+
+        <input class="form-control mb-2"
+               [(ngModel)]="selectedReception.shift"
+               placeholder="Shift">
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary"
+                data-bs-dismiss="modal">Cancel</button>
+
+        <button class="btn btn-primary"
+                (click)="updateReception()">Update</button>
+      </div>
+
+    </div>
+  </div>
 </div>

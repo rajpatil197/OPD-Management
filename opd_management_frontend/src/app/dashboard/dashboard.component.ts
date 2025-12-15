@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PatientService } from '../services/patient-service.service';
+import { ReceptionService } from '../services/reception-service.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,31 +9,43 @@ import { PatientService } from '../services/patient-service.service';
 })
 export class DashboardComponent implements OnInit {
 
-  totalPatients = 0;  
-  todaysAppointments = 0; // optional, if you implement later
-  pendingReports = 0;     // optional
+  totalPatients = 0;
+  todayPatients = 0;
+  totalReceptions = 0;
 
-  constructor(private patientService: PatientService) {}
+  recentPatients: any[] = [];
+
+  doctorId!: number;
+
+  constructor(
+    private patientService: PatientService,
+    private receptionService: ReceptionService
+  ) {}
 
   ngOnInit(): void {
-    this.loadPatientCount();
+    this.doctorId = Number(localStorage.getItem('doctorId'));
+
+    this.loadPatients();
+    this.loadReceptions();
   }
 
-  loadPatientCount() {
-    const doctorId = Number(localStorage.getItem("doctorId"));
+  loadPatients() {
+    this.patientService.getPatientsByDoctor(this.doctorId).subscribe(res => {
+      this.totalPatients = res.length;
 
-    if (!doctorId) {
-      console.error("Doctor not logged in");
-      return;
-    }
+      const today = new Date().toISOString().slice(0, 10);
 
-    this.patientService.getPatientsByDoctor(doctorId).subscribe({
-      next: (patients) => {
-        this.totalPatients = patients.length;
-      },
-      error: () => {
-        this.totalPatients = 0;
-      }
+      this.todayPatients = res.filter(
+        (p: any) => p.created_at === today
+      ).length;
+
+      this.recentPatients = res.slice(0, 5);
+    });
+  }
+
+  loadReceptions() {
+    this.receptionService.getReceptionsByDoctor(this.doctorId).subscribe(res => {
+      this.totalReceptions = res.length;
     });
   }
 }
