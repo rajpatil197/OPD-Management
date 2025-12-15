@@ -1,33 +1,88 @@
-<div class="main-dashboard">
+<div class="container-fluid">
 
+  <!-- HEADER -->
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h2 class="fw-bold">Doctor Dashboard</h2>
-    <span class="badge bg-success p-2">Online</span>
+    <span class="badge bg-success px-3 py-2">Online</span>
   </div>
 
-  <div class="row g-4">
+  <!-- STATS CARDS -->
+  <div class="row g-4 mb-4">
 
     <div class="col-md-4">
-      <div class="card shadow-sm border-0 p-3">
-        <h5 class="text-muted">Total Patients</h5>
-        <h2 class="fw-bold text-primary">{{ totalPatients }}</h2>
+      <div class="card shadow border-0">
+        <div class="card-body">
+          <h6 class="text-muted">Total Patients</h6>
+          <h2 class="fw-bold text-primary">{{ totalPatients }}</h2>
+        </div>
       </div>
     </div>
 
     <div class="col-md-4">
-      <div class="card shadow-sm border-0 p-3">
-        <h5 class="text-muted">Today's Appointments</h5>
-        <h2 class="fw-bold text-primary">{{ todaysAppointments }}</h2>
+      <div class="card shadow border-0">
+        <div class="card-body">
+          <h6 class="text-muted">Today’s Patients</h6>
+          <h2 class="fw-bold text-success">{{ todayPatients }}</h2>
+        </div>
       </div>
     </div>
 
     <div class="col-md-4">
-      <div class="card shadow-sm border-0 p-3">
-        <h5 class="text-muted">Pending Reports</h5>
-        <h2 class="fw-bold text-primary">{{ pendingReports }}</h2>
+      <div class="card shadow border-0">
+        <div class="card-body">
+          <h6 class="text-muted">Total Receptions</h6>
+          <h2 class="fw-bold text-warning">{{ totalReceptions }}</h2>
+        </div>
       </div>
     </div>
 
+  </div>
+
+  <!-- QUICK ACTIONS -->
+  <div class="row g-3 mb-4">
+
+    <div class="col-md-3">
+      <button routerLink="/doctor/patients"
+        class="btn btn-outline-primary w-100 py-2">
+        View Patients
+      </button>
+    </div>
+
+    <div class="col-md-3">
+      <button routerLink="/doctor/reception-list"
+        class="btn btn-outline-success w-100 py-2">
+         Manage Reception
+      </button>
+    </div>
+
+  </div>
+
+  <!-- RECENT PATIENTS -->
+  <div class="card shadow border-0">
+    <div class="card-header bg-white">
+      <h5 class="fw-bold mb-0">Recent Patients</h5>
+    </div>
+
+    <div class="card-body p-0">
+      <table class="table mb-0 table-hover">
+        <thead class="table-light">
+          <tr>
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>Age</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of recentPatients">
+            <td>{{ p.patient_name }}</td>
+            <td>{{ p.mobileno }}</td>
+            <td>{{ p.age }}</td>
+            <td>{{ p.created_at | date }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
 </div>
