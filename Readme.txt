@@ -26,7 +26,7 @@ Search & Filtering
 Quickly find patient records, doctors, visits, or prescriptions.
 
 User Roles & Authentication
-Admin, doctor, receptionist, and other role-based access controls.
+ Doctor, receptionist, and other role-based access controls.
 
  🛠️ Tech Stack
 Frontend (Angular 16)
@@ -41,7 +41,7 @@ RxJS & Angular Services
 
 Backend (Spring Boot)
 
-Java 17+
+Java 21+
 
 Spring Boot
 
@@ -49,7 +49,7 @@ Spring Security (JWT Authentication)
 
 Hibernate / JPA
 
-MySQL / PostgreSQL Database
+MySQL Database
 
 📌 Purpose
 
@@ -65,7 +65,7 @@ cd opd-management-system/backend
 
 Update your database configuration inside application.properties:
 
-spring.datasource.url=jdbc:mysql://localhost:3306/opd_db
+spring.datasource.url=jdbc:mysql://localhost:3306/opd_db // add user database name
 spring.datasource.username=root
 spring.datasource.password=yourpassword
 
