@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
   todayPatients = 0;
   totalReceptions = 0;
 
+  doctor:any =null;
   recentPatients: any[] = [];
 
   doctorId!: number;
@@ -23,6 +24,12 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+    const storedDoctor = localStorage.getItem('doctor');
+    if (storedDoctor) {
+      this.doctor = JSON.parse(storedDoctor);
+    }
+
     this.doctorId = Number(localStorage.getItem('doctorId'));
 
     this.loadPatients();

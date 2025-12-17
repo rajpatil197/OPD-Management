@@ -38,11 +38,19 @@
             </select>
           </div>
 
-          <div class="col-md-4 mb-3">
-            <label class="form-label">Blood Group</label>
-            <input class="form-control" name="blood_group"
-                   [(ngModel)]="patient.blood_group">
-          </div>
+        <div class="col-md-4 mb-3">
+        <label class="form-label">Blood Group</label>
+        <select class="form-select"
+                name="blood_group"
+                [(ngModel)]="patient.blood_group"
+                required>
+          <option value="">Select Blood Group</option>
+          <option *ngFor="let bg of bloodGroups" [value]="bg">
+            {{ bg }}
+          </option>
+        </select>
+      </div>
+
 
           <div class="col-md-4 mb-3">
             <label class="form-label">Height</label>

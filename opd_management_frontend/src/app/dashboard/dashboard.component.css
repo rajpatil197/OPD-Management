@@ -18,3 +18,14 @@
 main {
   margin-left: 220px; /* sidebar width */
 }
+.dashboard-header {
+  background: linear-gradient(135deg, #0d6efd, #0b5ed7);
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #28a745;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(40, 167, 69, 0.8);
+}
