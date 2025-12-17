@@ -2,10 +2,18 @@
 
   <!-- SIDEBAR -->
   <aside class="reception-sidebar bg-info text-white">
-    <div class="p-3 text-center border-bottom">
-      <h5 class="fw-bold mb-0">Reception Panel</h5>
-      <small>OPD System</small>
-    </div>
+     <!-- Reception profile -->
+  <div class="reception-profile text-center mt-3 mb-2 cursor-pointer">
+
+    <img src="assets/img/reception.png"
+         class="profile-pic mb-2">
+
+    <h5 class="fw-bold">{{ reception?.name }}</h5>
+    <p class="small mb-0">{{ reception?.email }}</p>
+    <p class="small text-light">{{ reception?.shift }}</p>
+
+    <hr class="bg-light">
+  </div>
 
     <ul class="nav flex-column mt-3">
       <li class="nav-item">

@@ -10,6 +10,10 @@ export class PatientListComponent implements OnInit {
 
   patients: any[] = [];
 
+   filteredPatients: any[] = [];
+
+  searchText: string = '';
+
   constructor(private patientService: PatientService) {}
 
   ngOnInit(): void {
@@ -20,32 +24,45 @@ export class PatientListComponent implements OnInit {
 
     let doctorId: number | null = null;
 
-    // 🔹 CASE 1: Doctor logged in
+    //  Doctor logged in
     const doctor = localStorage.getItem('doctor');
     if (doctor) {
       doctorId = JSON.parse(doctor).id;
     }
 
-    // 🔹 CASE 2: Reception logged in
+    //  Reception logged in
     const reception = localStorage.getItem('reception');
     if (!doctorId && reception) {
       doctorId = JSON.parse(reception).doctorid?.id;
     }
 
-    // 🔴 NO AUTH
+    //  NO AUTH
     if (!doctorId) {
       alert('Unauthorized access');
       return;
     }
 
-    // ✅ Fetch patients of that doctor
+    //  Fetch patients of that doctor
     this.patientService.getPatientsByDoctor(doctorId).subscribe({
       next: (res) => {
         this.patients = res;
+        this.filteredPatients = res;
       },
       error: () => {
         alert('No patients found');
       }
     });
+  }
+
+   ngOnChanges() {
+    this.applySearch();
+  }
+   applySearch() {
+    const search = this.searchText.toLowerCase();
+
+    this.filteredPatients = this.patients.filter(p =>
+      p.patient_name.toLowerCase().includes(search) ||
+      p.mobileno.includes(search)
+    );
   }
 }

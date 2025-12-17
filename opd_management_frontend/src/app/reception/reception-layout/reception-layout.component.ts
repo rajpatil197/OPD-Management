@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,9 +6,19 @@ import { Router } from '@angular/router';
   templateUrl: './reception-layout.component.html',
   styleUrls: ['./reception-layout.component.css']
 })
-export class ReceptionLayoutComponent {
+export class ReceptionLayoutComponent implements OnInit{
+
+  reception :any =null;
 
   constructor(private router: Router) {}
+
+  ngOnInit(): void {
+      const storedreception = localStorage.getItem("reception");
+      if(storedreception){
+        this.reception = JSON.parse(storedreception);
+      }
+  }
+  
 
   logout() {
     localStorage.removeItem('reception');

@@ -25,6 +25,8 @@ export class AddPatientComponent {
   created_at: new Date().toISOString().slice(0,10)
 };
 
+bloodGroups = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
+
 
   constructor(private patientService: PatientService, private router: Router) {}
 

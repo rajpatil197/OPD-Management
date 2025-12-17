@@ -1,44 +1,59 @@
 <div class="container mt-4">
 
-  <div class="text-center mb-4">
+  <!-- HEADER -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
     <h2 class="fw-bold">Patient Records</h2>
+
+    <!-- SEARCH BAR -->
+    <input type="text" class="form-control w-25" placeholder="Search by name / mobile"
+     [(ngModel)]="searchText" (ngModelChange)="applySearch()"
+/>
+
   </div>
 
+  <!-- PATIENT CARDS -->
   <div class="row">
 
-    <div class="col-lg-4 col-md-6 mb-4" *ngFor="let p of patients">
+    <div class="col-lg-4 col-md-6 mb-4"
+         *ngFor="let p of filteredPatients">
 
-      <div class="card shadow patient-card">
+      <div class="card shadow-sm patient-card h-100">
         <div class="card-body">
 
-          <h4 class="text-primary fw-bold">{{ p.patient_name }}</h4>
-          <p class="text-muted">Doctor: <strong>{{ p.doctorid?.name }}</strong></p>
+          <h5 class="fw-bold text-primary mb-2">
+            {{ p.patient_name }}
+          </h5>
 
-          <hr>
+          <p class="mb-1">
+            <strong>Mobile:</strong> {{ p.mobileno }}
+          </p>
 
-          <p><b>Mobile:</b> {{ p.mobileno }}</p>
-          <p><b>Age:</b> {{ p.age }}</p>
-          <p><b>Gender:</b> {{ p.gender }}</p>
-          <p><b>Blood Group:</b> {{ p.blood_group }}</p>
-          <p><b>Height:</b> {{ p.height }}</p>
-          <p><b>Smoking:</b> {{ p.smoking }}</p>
-          <p><b>Alcohol:</b> {{ p.alcohol }}</p>
-          <p><b>Tobacco:</b> {{ p.tobacco }}</p>
-          <p><b>Address:</b> {{ p.address }}</p>
-          <p><b>Date Added:</b> {{ p.created_at }}</p>
+          <p class="mb-1">
+            <strong>Gender:</strong> {{ p.gender }}
+          </p>
+
+          <p class="mb-1">
+            <strong>Age:</strong> {{ p.age }}
+          </p>
+
+          <p class="mb-0">
+            <strong>Blood Group:</strong> {{ p.blood_group }}
+          </p>
 
         </div>
       </div>
 
     </div>
+
   </div>
 
-  <!-- FLOATING ADD BUTTON
-  <button
+</div>
+
+<!-- <button
     class="btn btn-primary floating-btn"
     routerLink="/add-patient"
   >
     <i class="bi bi-plus-lg"></i> Add Patient
   </button> -->
 
-</div>
+
