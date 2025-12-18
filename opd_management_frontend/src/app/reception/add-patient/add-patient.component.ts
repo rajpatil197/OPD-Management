@@ -17,16 +17,15 @@ export class AddPatientComponent {
   gender: "",
   blood_group: "",
   height: "",
-  smoking: "",
-  alcohol: "",
-  tobacco: "",
+  smoking: "No",
+  alcohol: "No",
+  tobacco: "No",
   address: "",
   doctorid: Number(localStorage.getItem("doctorId")), // dynamic doctor
   created_at: new Date().toISOString().slice(0,10)
 };
 
 bloodGroups = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
-
 
   constructor(private patientService: PatientService, private router: Router) {}
 
