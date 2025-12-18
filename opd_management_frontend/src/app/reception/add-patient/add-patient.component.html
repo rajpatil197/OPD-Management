@@ -58,23 +58,72 @@
                    [(ngModel)]="patient.height">
           </div>
 
-          <div class="col-md-4 mb-3">
-            <label class="form-label">Smoking</label>
-            <input class="form-control" name="smoking"
-                   [(ngModel)]="patient.smoking">
+         <div class="col-md-4 mb-3">
+            <label class="form-label d-block">Smoking</label>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input"
+                    type="radio"
+                    name="smoking"
+                    value="Yes"
+                    [(ngModel)]="patient.smoking">
+              <label class="form-check-label">Yes</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input"
+                    type="radio"
+                    name="smoking"
+                    value="No"
+                    [(ngModel)]="patient.smoking">
+              <label class="form-check-label">No</label>
+            </div>
           </div>
 
           <div class="col-md-4 mb-3">
-            <label class="form-label">Alcohol</label>
-            <input class="form-control" name="alcohol"
-                   [(ngModel)]="patient.alcohol">
+            <label class="form-label d-block">Alcohol</label>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input"
+                    type="radio"
+                    name="alcohol"
+                    value="Yes"
+                    [(ngModel)]="patient.alcohol">
+              <label class="form-check-label">Yes</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input"
+                    type="radio"
+                    name="alcohol"
+                    value="No"
+                    [(ngModel)]="patient.alcohol">
+              <label class="form-check-label">No</label>
+            </div>
           </div>
 
           <div class="col-md-4 mb-3">
-            <label class="form-label">Tobacco</label>
-            <input class="form-control" name="tobacco"
-                   [(ngModel)]="patient.tobacco">
+            <label class="form-label d-block">Tobacco</label>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input"
+                    type="radio"
+                    name="tobacco"
+                    value="Yes"
+                    [(ngModel)]="patient.tobacco">
+              <label class="form-check-label">Yes</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input"
+                    type="radio"
+                    name="tobacco"
+                    value="No"
+                    [(ngModel)]="patient.tobacco">
+              <label class="form-check-label">No</label>
+            </div>
           </div>
+
 
           <div class="col-md-12 mb-3">
             <label class="form-label">Address</label>
