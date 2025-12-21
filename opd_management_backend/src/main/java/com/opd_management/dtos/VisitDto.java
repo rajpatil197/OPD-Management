@@ -17,10 +17,10 @@ public class VisitDto {
     @NotBlank(message = "Complaints field is required")
     private String complaints;
 
-    @NotBlank(message = "Diagnosis field is required")
+   // @NotBlank(message = "Diagnosis field is required")
     private String diagnosis;
 
-    @NotBlank(message = "Advice is required")
+    //@NotBlank(message = "Advice is required")
     private String advice;
 
 

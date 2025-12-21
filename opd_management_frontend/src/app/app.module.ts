@@ -19,6 +19,8 @@ import { ReceptionLoginComponent } from './reception/reception-login/reception-l
 import { ReceptionDashboardComponent } from './reception/reception-dashboard/reception-dashboard.component';
 import { ReceptionLayoutComponent } from './reception/reception-layout/reception-layout.component';
 import { EditPatientComponent } from './reception/edit-patient/edit-patient.component';
+import { CreateVisitComponent } from './reception/create-visit/create-visit.component';
+import { VisitListComponent } from './doctor/visit-list/visit-list.component';
 
 
 @NgModule({
@@ -37,7 +39,9 @@ import { EditPatientComponent } from './reception/edit-patient/edit-patient.comp
     ReceptionLoginComponent,
     ReceptionDashboardComponent,
     ReceptionLayoutComponent,
-    EditPatientComponent
+    EditPatientComponent,
+    CreateVisitComponent,
+    VisitListComponent
   ],
   imports: [
     BrowserModule,
