@@ -1,0 +1,52 @@
+<div class="container mt-4">
+  <h3 class="fw-bold mb-3">Edit Patient</h3>
+
+  <form (ngSubmit)="updatePatient()">
+
+    <div class="row">
+
+      <div class="col-md-4 mb-3">
+        <label>Name</label>
+        <input class="form-control" [(ngModel)]="patient.patient_name" name="patient_name">
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label>Mobile</label>
+        <input class="form-control" [(ngModel)]="patient.mobileno" name="mobileno">
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label>Age</label>
+        <input type="number" class="form-control" [(ngModel)]="patient.age" name="age">
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label>Gender</label>
+        <select class="form-select" [(ngModel)]="patient.gender" name="gender">
+          <option>Male</option>
+          <option>Female</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label>Blood Group</label>
+        <select class="form-select" [(ngModel)]="patient.blood_group" name="blood_group">
+          <option>A+</option><option>A-</option>
+          <option>B+</option><option>B-</option>
+          <option>AB+</option><option>AB-</option>
+          <option>O+</option><option>O-</option>
+        </select>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label>Address</label>
+        <input class="form-control"  [(ngModel)]="patient.address" name="address">
+      </div>
+
+    </div>
+
+    <button class="btn btn-primary">Update Patient</button>
+
+  </form>
+</div>

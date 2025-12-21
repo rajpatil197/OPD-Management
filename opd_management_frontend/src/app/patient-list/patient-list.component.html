@@ -5,10 +5,11 @@
     <h2 class="fw-bold">Patient Records</h2>
 
     <!-- SEARCH BAR -->
-    <input type="text" class="form-control w-25" placeholder="Search by name / mobile"
-     [(ngModel)]="searchText" (ngModelChange)="applySearch()"
-/>
-
+    <input type="text"
+           class="form-control w-25"
+           placeholder="Search by name / mobile"
+           [(ngModel)]="searchText"
+           (ngModelChange)="applySearch()" />
   </div>
 
   <!-- PATIENT CARDS -->
@@ -18,27 +19,37 @@
          *ngFor="let p of filteredPatients">
 
       <div class="card shadow-sm patient-card h-100">
-        <div class="card-body">
+        <div class="card-body d-flex flex-column">
 
+          <!-- PATIENT INFO -->
           <h5 class="fw-bold text-primary mb-2">
             {{ p.patient_name }}
           </h5>
 
-          <p class="mb-1">
-            <strong>Mobile:</strong> {{ p.mobileno }}
-          </p>
+          <p class="mb-1"><strong>Mobile:</strong> {{ p.mobileno }}</p>
+          <p class="mb-1"><strong>Gender:</strong> {{ p.gender }}</p>
+          <p class="mb-1"><strong>Age:</strong> {{ p.age }}</p>
+          <p class="mb-3"><strong>Blood Group:</strong> {{ p.blood_group }}</p>
 
-          <p class="mb-1">
-            <strong>Gender:</strong> {{ p.gender }}
-          </p>
+          <!-- ACTION BUTTONS -->
+          <div class="mt-auto d-flex justify-content-between gap-2">
 
-          <p class="mb-1">
-            <strong>Age:</strong> {{ p.age }}
-          </p>
+           <button class="btn btn-sm btn-outline-primary w-100" (click)="openViewModal(p)">
+              <i class="bi bi-eye"></i> View
+            </button>
 
-          <p class="mb-0">
-            <strong>Blood Group:</strong> {{ p.blood_group }}
-          </p>
+
+            <button class="btn btn-sm btn-outline-warning w-100"
+                    (click)="editPatient(p)">
+              <i class="bi bi-pencil-square"></i> Edit
+            </button>
+
+            <button class="btn btn-sm btn-outline-danger w-100"
+                    (click)="deletePatient(p.id)">
+              <i class="bi bi-trash"></i> Delete
+            </button>
+
+          </div>
 
         </div>
       </div>
@@ -48,6 +59,51 @@
   </div>
 
 </div>
+<!-- VIEW PATIENT MODAL -->
+<div class="modal fade" id="viewPatientModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">Patient Details</h5>
+        <button type="button" class="btn-close btn-close-white"
+                data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body" *ngIf="selectedPatient">
+
+        <div class="row">
+          <div class="col-md-6 mb-2"><b>Name:</b> {{ selectedPatient.patient_name }}</div>
+          <div class="col-md-6 mb-2"><b>Mobile:</b> {{ selectedPatient.mobileno }}</div>
+
+          <div class="col-md-4 mb-2"><b>Age:</b> {{ selectedPatient.age }}</div>
+          <div class="col-md-4 mb-2"><b>Gender:</b> {{ selectedPatient.gender }}</div>
+          <div class="col-md-4 mb-2"><b>Blood Group:</b> {{ selectedPatient.blood_group }}</div>
+
+          <div class="col-md-4 mb-2"><b>Height:</b> {{ selectedPatient.height }}</div>
+          <div class="col-md-4 mb-2"><b>Smoking:</b> {{ selectedPatient.smoking }}</div>
+          <div class="col-md-4 mb-2"><b>Alcohol:</b> {{ selectedPatient.alcohol }}</div>
+
+          <div class="col-md-12 mt-2">
+            <b>Address:</b> {{ selectedPatient.address }}
+          </div>
+
+          <div class="col-md-12 mt-2">
+            <b>Created At:</b> {{ selectedPatient.created_at | date }}
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
 
 <!-- <button
     class="btn btn-primary floating-btn"
