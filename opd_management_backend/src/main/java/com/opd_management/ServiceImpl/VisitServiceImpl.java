@@ -39,4 +39,10 @@ public class VisitServiceImpl implements VisitService {
 		visitRepository.deleteById(id);
 	}
 
+	@Override
+	public List<Visit> GetVisitByDoctor(int doctorId) {
+		// TODO Auto-generated method stub
+		return visitRepository.findByDoctorid_Id(doctorId);
+	}
+
 }

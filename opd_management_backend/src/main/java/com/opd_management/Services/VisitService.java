@@ -10,4 +10,6 @@ public interface VisitService {
 	List<Visit>GetAllVisit();
 	Visit GetVisitById(int id);
 	void DeleteVisitById(int id);
+	
+	List<Visit>GetVisitByDoctor(int doctorId);
 }

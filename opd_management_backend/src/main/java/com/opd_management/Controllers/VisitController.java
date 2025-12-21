@@ -193,4 +193,15 @@ public class VisitController {
 		
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT); // Correct delete response
 	}
+	
+	@GetMapping("/doctor/{doctorId}")
+	public ResponseEntity<List<Visit>>getVisitByDoctor(@PathVariable int doctorId){
+		
+		List<Visit> visit = visitService.GetVisitByDoctor(doctorId);
+		 if (visit.isEmpty()) {
+		        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		    }
+
+		    return new ResponseEntity<>(visit, HttpStatus.OK);
+	}
 }
