@@ -19,6 +19,7 @@ import { AddReceptionComponent } from './reception/add-reception/add-reception.c
 
 import { ReceptionAuthGuard } from './guards/reception-auth.guard';
 import { ReceptionLayoutComponent } from './reception/reception-layout/reception-layout.component';
+import { EditPatientComponent } from './reception/edit-patient/edit-patient.component';
 
 const routes: Routes = [
 
@@ -38,8 +39,8 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'patients', component: PatientListComponent },
       { path: 'reception-list', component: ReceptionListComponent },
-      {path:'add-patient',component:AddPatientComponent},
-      {path:'add-reception',component:AddReceptionComponent}
+      {path:'add-reception',component:AddReceptionComponent},
+      {path :'edit-patient/:id',component:EditPatientComponent}
     ]
   },
 
@@ -51,7 +52,8 @@ const routes: Routes = [
   children: [
     { path: 'dashboard', component: ReceptionDashboardComponent },
     { path: 'patients', component: PatientListComponent },
-    { path: 'add-patient', component: AddPatientComponent }
+    { path: 'add-patient', component: AddPatientComponent },
+    {path :'edit-patient/:id',component:EditPatientComponent}
   ]
 }
 
