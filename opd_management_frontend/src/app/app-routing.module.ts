@@ -20,6 +20,8 @@ import { AddReceptionComponent } from './reception/add-reception/add-reception.c
 import { ReceptionAuthGuard } from './guards/reception-auth.guard';
 import { ReceptionLayoutComponent } from './reception/reception-layout/reception-layout.component';
 import { EditPatientComponent } from './reception/edit-patient/edit-patient.component';
+import { CreateVisitComponent } from './reception/create-visit/create-visit.component';
+import { VisitListComponent } from './doctor/visit-list/visit-list.component';
 
 const routes: Routes = [
 
@@ -40,7 +42,8 @@ const routes: Routes = [
       { path: 'patients', component: PatientListComponent },
       { path: 'reception-list', component: ReceptionListComponent },
       {path:'add-reception',component:AddReceptionComponent},
-      {path :'edit-patient/:id',component:EditPatientComponent}
+      {path :'edit-patient/:id',component:EditPatientComponent},
+      { path: 'visit-list', component: VisitListComponent } 
     ]
   },
 
@@ -53,7 +56,8 @@ const routes: Routes = [
     { path: 'dashboard', component: ReceptionDashboardComponent },
     { path: 'patients', component: PatientListComponent },
     { path: 'add-patient', component: AddPatientComponent },
-    {path :'edit-patient/:id',component:EditPatientComponent}
+    {path :'edit-patient/:id',component:EditPatientComponent},
+    { path: 'create-visit', component: CreateVisitComponent }
   ]
 }
 

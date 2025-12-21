@@ -1,0 +1,52 @@
+<div class="container mt-4">
+
+  <h3 class="fw-bold mb-4">Create Visit</h3>
+
+  <div class="card shadow border-0">
+    <div class="card-body">
+
+      <!-- Patient Dropdown -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Select Patient</label>
+        <select class="form-select"
+                [(ngModel)]="visit.patientid">
+          <option value="">-- Select Patient --</option>
+          <option *ngFor="let p of patients" [value]="p.id">
+            {{ p.patient_name }} ({{ p.mobileno }})
+          </option>
+        </select>
+      </div>
+
+      <!-- Complaints -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Complaints</label>
+        <textarea class="form-control"
+                  rows="3"
+                  [(ngModel)]="visit.complaints"
+                  placeholder="Enter patient complaints"></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Weight</label>
+        <input type="text"
+               class="form-control"
+               [(ngModel)]="visit.weight">
+      </div>
+
+      <!-- Visit Date -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Visit Date</label>
+        <input type="date"
+               class="form-control"
+               [(ngModel)]="visit.visit_date">
+      </div>
+
+      <button class="btn btn-primary"
+              (click)="createVisit()">
+        Create Visit
+      </button>
+
+    </div>
+  </div>
+
+</div>
