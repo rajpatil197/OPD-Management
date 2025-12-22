@@ -22,6 +22,7 @@ import { ReceptionLayoutComponent } from './reception/reception-layout/reception
 import { EditPatientComponent } from './reception/edit-patient/edit-patient.component';
 import { CreateVisitComponent } from './reception/create-visit/create-visit.component';
 import { VisitListComponent } from './doctor/visit-list/visit-list.component';
+import { VisitDetailsComponent } from './doctor/visit-details/visit-details.component';
 
 const routes: Routes = [
 
@@ -43,7 +44,8 @@ const routes: Routes = [
       { path: 'reception-list', component: ReceptionListComponent },
       {path:'add-reception',component:AddReceptionComponent},
       {path :'edit-patient/:id',component:EditPatientComponent},
-      { path: 'visit-list', component: VisitListComponent } 
+      { path: 'visit-list', component: VisitListComponent } ,
+      { path: 'visit/:id', component: VisitDetailsComponent}
     ]
   },
 

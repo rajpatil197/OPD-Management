@@ -21,6 +21,7 @@ import { ReceptionLayoutComponent } from './reception/reception-layout/reception
 import { EditPatientComponent } from './reception/edit-patient/edit-patient.component';
 import { CreateVisitComponent } from './reception/create-visit/create-visit.component';
 import { VisitListComponent } from './doctor/visit-list/visit-list.component';
+import { VisitDetailsComponent } from './doctor/visit-details/visit-details.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { VisitListComponent } from './doctor/visit-list/visit-list.component';
     ReceptionLayoutComponent,
     EditPatientComponent,
     CreateVisitComponent,
-    VisitListComponent
+    VisitListComponent,
+    VisitDetailsComponent
   ],
   imports: [
     BrowserModule,
