@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Router } from '@angular/router';
 import { VisitService } from 'src/app/services/visit-service.service';
 
@@ -21,18 +20,24 @@ export class VisitListComponent implements OnInit {
   }
 
   loadVisits() {
-    const doctor = localStorage.getItem('doctor');
+    const doctorStr = localStorage.getItem('doctor');
 
-    if (!doctor) {
+    if (!doctorStr) {
       alert('Doctor not logged in');
       return;
     }
 
-    const doctorId = JSON.parse(doctor).id;
+    const doctor = JSON.parse(doctorStr);
 
-    this.visitService.getVisitsByDoctor(doctorId).subscribe({
-      next: (res) => this.visits = res,
-      error: () => alert('Failed to load visits')
+    this.visitService.getVisitsByDoctor(doctor.id).subscribe({
+      next: (res) => {
+        console.log('Doctor visits:', res);
+        this.visits = res;
+      },
+      error: (err) => {
+        console.error(err);
+        alert('Failed to load visits');
+      }
     });
   }
 
