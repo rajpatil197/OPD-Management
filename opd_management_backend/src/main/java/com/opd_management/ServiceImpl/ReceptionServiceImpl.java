@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.opd_management.Exception.ResourceNotFoundException;
 import com.opd_management.Repositories.ReceptionRepository;
 import com.opd_management.Services.ReceptionService;
 import com.opd_management.entities.Reception;
@@ -30,7 +31,7 @@ public class ReceptionServiceImpl implements ReceptionService {
 	@Override
 	public Reception GetReceptionById(int id) {
 		// TODO Auto-generated method stub
-		return receptionRepository.findById(id).orElse(null);
+		return receptionRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Reception Not Found With this id: "+ id));
 	}
 
 	@Override

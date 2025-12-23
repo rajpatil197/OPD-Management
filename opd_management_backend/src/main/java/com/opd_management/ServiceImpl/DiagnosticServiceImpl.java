@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.opd_management.Exception.ResourceNotFoundException;
 import com.opd_management.Repositories.DiagnosticRepository;
 import com.opd_management.Services.DiagnosticService;
 import com.opd_management.entities.Diagnostic;
@@ -30,7 +31,7 @@ public class DiagnosticServiceImpl implements DiagnosticService {
 	@Override
 	public Diagnostic GetDiagnosticByID(int id) {
 		// TODO Auto-generated method stub
-		return diagnosticRepository.findById(id).orElse(null);
+		return diagnosticRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Diagnostic Not Found With this id: "+ id));
 	}
 
 	@Override

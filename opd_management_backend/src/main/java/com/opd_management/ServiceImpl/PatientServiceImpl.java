@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.opd_management.Exception.ResourceNotFoundException;
 import com.opd_management.Repositories.PatientRepository;
 import com.opd_management.Services.PatientService;
 import com.opd_management.entities.Patient;
@@ -32,7 +33,7 @@ public class PatientServiceImpl implements PatientService {
 	@Override
 	public Patient getPatientByID(int id) {
 		// TODO Auto-generated method stub
-		return patientRepository.findById(id).orElse(null);//repository method
+		return patientRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Patient Not Found With this id: "+ id));//repository method
 	}
 
 	@Override

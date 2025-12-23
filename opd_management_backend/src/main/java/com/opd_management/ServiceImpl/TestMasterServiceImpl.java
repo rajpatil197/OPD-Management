@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.opd_management.Exception.ResourceNotFoundException;
 import com.opd_management.Repositories.TestMasterRepository;
 import com.opd_management.Services.TestMasterService;
 import com.opd_management.entities.TestMaster;
@@ -30,7 +31,7 @@ public class TestMasterServiceImpl implements TestMasterService {
 	@Override
 	public TestMaster GetTestMasterById(int id) {
 		// TODO Auto-generated method stub
-		return testMasterRepository.findById(id).orElse(null);
+		return testMasterRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Test Master Not Found With this id: "+ id));
 	}
 
 	@Override

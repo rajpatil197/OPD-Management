@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.opd_management.Exception.ResourceNotFoundException;
 import com.opd_management.Repositories.BillRepository;
 import com.opd_management.Services.BillService;
 import com.opd_management.entities.Bill;
@@ -30,7 +31,7 @@ public class BillServiceImpl implements BillService {
 	@Override
 	public Bill GetBillById(int id) {
 		// TODO Auto-generated method stub
-		return billRepository.findById(id).orElse(null);
+		return billRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Bill Not Found With this id: "+ id));
 	}
 
 	@Override

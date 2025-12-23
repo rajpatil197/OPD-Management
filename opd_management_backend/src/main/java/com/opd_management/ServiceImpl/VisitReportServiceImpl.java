@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.opd_management.Exception.ResourceNotFoundException;
 import com.opd_management.Repositories.VisitReportRepository;
 import com.opd_management.Services.VisitReportService;
 import com.opd_management.entities.VisitReport;
@@ -30,7 +31,7 @@ public class VisitReportServiceImpl implements VisitReportService {
 	@Override
 	public VisitReport GetVisitReportById(int id) {
 		// TODO Auto-generated method stub
-		return visitReportRepository.findById(id).orElse(null);
+		return visitReportRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Visit Report Not Found With this id: "+ id));
 	}
 
 	@Override
