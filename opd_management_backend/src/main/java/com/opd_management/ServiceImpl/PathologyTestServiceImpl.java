@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.opd_management.Exception.ResourceNotFoundException;
 import com.opd_management.Repositories.PathologyTestRepository;
 import com.opd_management.Services.PathologyTestService;
 import com.opd_management.entities.PathologyTest;
@@ -30,7 +31,7 @@ public class PathologyTestServiceImpl implements PathologyTestService {
 	@Override
 	public PathologyTest GetPathologyTestById(int id) {
 		// TODO Auto-generated method stub
-		return pathologyTestRepository.findById(id).orElse(null);
+		return pathologyTestRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pathology tests Not Found With this id: "+ id));
 	}
 
 	@Override
