@@ -10,4 +10,5 @@ public interface DoctorRepository extends JpaRepository<Doctor, Integer> {
 
 	Doctor findByEmail(String email);
 
+	Boolean existsByEmail(String email);
 }
