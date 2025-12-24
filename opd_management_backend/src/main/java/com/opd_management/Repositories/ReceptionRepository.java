@@ -13,4 +13,6 @@ public interface ReceptionRepository extends JpaRepository<Reception, Integer> {
 	List<Reception> findByDoctorid_Id(int doctor_Id);
 
 	Reception findByEmail(String email);
+	
+	Boolean existsByEmail(String email);
 }
