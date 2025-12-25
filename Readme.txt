@@ -25,7 +25,7 @@ View patient statistics, appointment summaries, and daily/weekly activity report
 Search & Filtering
 Quickly find patient records, doctors, visits, or prescriptions.
 
-User Roles & Authentication
+User Roles & Authentication , Authorization of Roles
  Doctor, receptionist, and other role-based access controls.
 
  🛠️ Tech Stack
@@ -75,8 +75,8 @@ spring.jpa.show-sql=true
 
 Run the backend:
 
-mvn spring-boot:run
-
+1)mvn spring-boot:run
+2)Import project in Eclipse or Intellji then Update Maven and Run .
 
 Backend runs at: http://localhost:8080
 📌 Frontend Setup (Angular 16)
