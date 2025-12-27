@@ -41,6 +41,7 @@ public class GlobalExceptionHandler {
 		
 		return new ResponseEntity<>(errors,HttpStatus.BAD_REQUEST);
 	}
+	
 	//Database Errors
 	@ExceptionHandler(DataBaseException.class)
 	public ResponseEntity<ErrorResponse> HandleDatabaseException(DataBaseException ex){
