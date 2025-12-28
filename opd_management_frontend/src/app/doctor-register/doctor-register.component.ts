@@ -20,9 +20,9 @@ export class DoctorRegisterComponent {
       email: ['', Validators.required],
       specialization: ['', Validators.required],
       clinic_name: ['', Validators.required],
-
-      address: [''],
-      mobileno: [''],
+      qualification:['',Validators.required],
+      address: ['',Validators.required],
+      mobileno: ['',Validators.required],
 
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
