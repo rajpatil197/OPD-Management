@@ -46,6 +46,7 @@ public class ReceptionController {
         reception.setName(receptionDto.getName());
         reception.setEmail(receptionDto.getEmail());
         reception.setPhoneNo(receptionDto.getPhoneNo());
+        reception.setRole("RECEPTION");
         reception.setShift(receptionDto.getShift());
         reception.setPassword(receptionDto.getPassword());
 

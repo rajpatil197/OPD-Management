@@ -48,6 +48,8 @@ public class DoctorController {
 		doctor.setMobileno(doctorDto.getMobileno());
 		doctor.setToken(doctorDto.getToken());
 		doctor.setStatus(doctorDto.getStatus());
+		doctor.setRole("DOCTOR");
+		doctor.setQualification(doctorDto.getQualification());
 		doctor.setCreated_at(doctorDto.getCreated_at());
 		doctor.setUpdated_at(doctorDto.getUpdated_at());
 		 
@@ -109,6 +111,7 @@ public class DoctorController {
 		doctor.setMobileno(doctorDto.getMobileno());
 		doctor.setToken(doctorDto.getToken());
 		doctor.setStatus(doctorDto.getStatus());
+		doctor.setQualification(doctorDto.getQualification());
 		doctor.setCreated_at(doctorDto.getCreated_at());
 		doctor.setUpdated_at(doctorDto.getUpdated_at());
 		 

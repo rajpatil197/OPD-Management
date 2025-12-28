@@ -21,6 +21,7 @@ public class Reception {
 	private String name;
 	private String email;
 	private String phoneNo;
+	private String role;
 	private String shift;
 	private String password;
 	
@@ -28,85 +29,98 @@ public class Reception {
 	 @JoinColumn(name="doctor_id")
 	 @JsonIgnoreProperties({"patients","receptions"})
 	 private Doctor doctorid;
+	 
+	 
 
-	
-	public int getId() {
-		return id;
-	}
+	 public int getId() {
+		 return id;
+	 }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+	 public void setId(int id) {
+		 this.id = id;
+	 }
 
-	public String getName() {
-		return name;
-	}
+	 public String getName() {
+		 return name;
+	 }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+	 public void setName(String name) {
+		 this.name = name;
+	 }
 
-	public String getEmail() {
-		return email;
-	}
+	 public String getEmail() {
+		 return email;
+	 }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	 public void setEmail(String email) {
+		 this.email = email;
+	 }
 
-	public String getPhoneNo() {
-		return phoneNo;
-	}
+	 public String getPhoneNo() {
+		 return phoneNo;
+	 }
 
-	public void setPhoneNo(String phoneNo) {
-		this.phoneNo = phoneNo;
-	}
+	 public void setPhoneNo(String phoneNo) {
+		 this.phoneNo = phoneNo;
+	 }
 
-	public String getShift() {
-		return shift;
-	}
+	 public String getRole() {
+		 return role;
+	 }
 
-	public void setShift(String shift) {
-		this.shift = shift;
-	}
+	 public void setRole(String role) {
+		 this.role = role;
+	 }
 
-	public String getPassword() {
-		return password;
-	}
+	 public String getShift() {
+		 return shift;
+	 }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+	 public void setShift(String shift) {
+		 this.shift = shift;
+	 }
 
-	public Doctor getDoctorid() {
-		return doctorid;
-	}
+	 public String getPassword() {
+		 return password;
+	 }
 
-	public void setDoctorid(Doctor doctorid) {
-		this.doctorid = doctorid;
-	}
+	 public void setPassword(String password) {
+		 this.password = password;
+	 }
 
-	public Reception(int id, String name, String email, String phoneNo, String shift, String password, Doctor doctorid) {
+	 public Doctor getDoctorid() {
+		 return doctorid;
+	 }
+
+	 public void setDoctorid(Doctor doctorid) {
+		 this.doctorid = doctorid;
+	 }
+
+	 public Reception(int id, String name, String email, String phoneNo, String role, String shift, String password,
+			Doctor doctorid) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.phoneNo = phoneNo;
+		this.role = role;
 		this.shift = shift;
 		this.password = password;
 		this.doctorid = doctorid;
-	}
+	 }
 
-	public Reception() {
+	 public Reception() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
+	 }
 
-	@Override
-	public String toString() {
-		return "Reception [id=" + id + ", name=" + name + ", email=" + email + ", phoneNo=" + phoneNo + ", shift="
-				+ shift + ", password=" + password + ", doctorid=" + doctorid + "]";
-	}
+	 
+	 @Override
+	 public String toString() {
+		return "Reception [id=" + id + ", name=" + name + ", email=" + email + ", phoneNo=" + phoneNo + ", role=" + role
+				+ ", shift=" + shift + ", password=" + password + ", doctorid=" + doctorid + "]";
+	 }
+
 	
 	
 	
