@@ -39,7 +39,7 @@ public class DoctorController {
 		
 		// Mapping data from DTO to Entity
 		Doctor doctor = new Doctor();
-		doctor.setName(doctorDto.getName());
+		doctor.setName("Dr."+doctorDto.getName());
 		doctor.setEmail(doctorDto.getEmail());
 		doctor.setAddress(doctorDto.getAddress());
 		doctor.setPassword(doctorDto.getPassword());
