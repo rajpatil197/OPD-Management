@@ -1,1 +1,113 @@
-<p>visit-details works!</p>
+<div class="container mt-4">
+
+  <h3 class="fw-bold mb-3">Visit Details</h3>
+
+  <!-- Patient Basic Info -->
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <h5 class="mb-1">{{ visit.patientid?.patient_name }}</h5>
+      <p class="text-muted mb-0">Mobile: {{ visit.patientid?.mobileno }}</p>
+    </div>
+  </div>
+
+  <form (ngSubmit)="saveVisit()">
+
+    <!-- Complaints & Diagnosis -->
+    <div class="card shadow mb-3">
+      <div class="card-body">
+        <h5 class="fw-bold text-primary">Assessment & Plan</h5>
+
+        <label class="form-label mt-2">Complaints</label>
+        <textarea class="form-control" [(ngModel)]="visit.complaints" name="complaints"></textarea>
+
+        <label class="form-label mt-3">Diagnosis</label>
+        <textarea class="form-control" [(ngModel)]="visit.diagnosis" name="diagnosis"></textarea>
+
+        <label class="form-label mt-3">Advice / Treatment</label>
+        <textarea class="form-control" [(ngModel)]="visit.advice" name="advice"></textarea>
+      </div>
+    </div>
+
+    <!-- Vitals -->
+    <div class="card shadow mb-3">
+      <div class="card-body">
+        <h5 class="fw-bold">Vitals</h5>
+        <div class="row">
+          <div class="col-md-3 mb-3"><label>BP</label><input class="form-control" [(ngModel)]="visit.bp" name="bp"></div>
+          <div class="col-md-3 mb-3"><label>Pulse</label><input class="form-control" [(ngModel)]="visit.pulse" name="pulse"></div>
+          <div class="col-md-3 mb-3"><label>SPO₂</label><input class="form-control" [(ngModel)]="visit.saturation" name="saturation"></div>
+          <div class="col-md-3 mb-3"><label>Temp</label><input class="form-control" [(ngModel)]="visit.temperature" name="temperature"></div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 mb-3"><label>Resp. Rate</label><input class="form-control" [(ngModel)]="visit.respiration_rate" name="respiration_rate"></div>
+          <div class="col-md-3 mb-3"><label>Weight (kg)</label><input class="form-control" type="number" [(ngModel)]="visit.weight" name="weight"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sugar -->
+    <div class="card shadow mb-3">
+      <div class="card-body">
+        <h5 class="fw-bold">Sugar Levels (if diabetic)</h5>
+        <div class="row">
+          <div class="col-md-3 mb-3"><label>Sugar</label><input class="form-control" [(ngModel)]="visit.sugar" name="sugar"></div>
+          <div class="col-md-3 mb-3"><label>Fasting</label><input class="form-control" [(ngModel)]="visit.fasting_sugar" name="fasting_sugar"></div>
+          <div class="col-md-3 mb-3"><label>PP Sugar</label><input class="form-control" [(ngModel)]="visit.pp_sugar" name="pp_sugar"></div>
+          <div class="col-md-3 mb-3"><label>Random</label><input class="form-control" [(ngModel)]="visit.random_sugar" name="random_sugar"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Medical History -->
+    <div class="card shadow mb-3">
+      <div class="card-body">
+        <h5 class="fw-bold">Medical Notes</h5>
+
+        <label class="form-label">Past History</label>
+        <textarea class="form-control mb-2" [(ngModel)]="visit.past_history" name="past_history"></textarea>
+
+        <label class="form-label">Current Medication</label>
+        <textarea class="form-control mb-2" [(ngModel)]="visit.current_medication" name="current_medication"></textarea>
+
+        <label class="form-label">Additional Notes</label>
+        <textarea class="form-control" [(ngModel)]="visit.additional_notes" name="additional_notes"></textarea>
+      </div>
+    </div>
+
+    <!-- Clinical Examination -->
+    <div class="card shadow mb-3">
+      <div class="card-body">
+        <h5 class="fw-bold">Clinical Examination</h5>
+
+        <div class="row">
+          <div class="col-md-2 mb-2"><label>Edema</label><input class="form-control" [(ngModel)]="visit.edema" name="edema"></div>
+          <div class="col-md-2 mb-2"><label>Pallor</label><input class="form-control" [(ngModel)]="visit.pallor" name="pallor"></div>
+          <div class="col-md-2 mb-2"><label>Jaundice</label><input class="form-control" [(ngModel)]="visit.jaundice" name="jaundice"></div>
+          <div class="col-md-2 mb-2"><label>CVS</label><input class="form-control" [(ngModel)]="visit.cvs" name="cvs"></div>
+          <div class="col-md-2 mb-2"><label>RS</label><input class="form-control" [(ngModel)]="visit.rs" name="rs"></div>
+          <div class="col-md-2 mb-2"><label>PA</label><input class="form-control" [(ngModel)]="visit.pa" name="pa"></div>
+        </div>
+
+        <label class="form-label">CNS</label>
+        <input class="form-control mb-2" [(ngModel)]="visit.cns" name="cns">
+
+        <label class="form-label">HB</label>
+        <input class="form-control mb-2" [(ngModel)]="visit.hb" name="hb">
+
+        <label class="form-label">ECG</label>
+        <textarea class="form-control mb-2" [(ngModel)]="visit.ecg" name="ecg"></textarea>
+      </div>
+    </div>
+
+    <!-- FollowUp -->
+    <div class="card shadow mb-3">
+      <div class="card-body">
+        <label class="form-label fw-bold">Follow-up Date</label>
+        <input type="date" class="form-control" [(ngModel)]="visit.followup_date" name="followup_date">
+      </div>
+    </div>
+
+    <button class="btn btn-primary w-100" type="submit">Save Visit</button>
+
+  </form>
+</div>

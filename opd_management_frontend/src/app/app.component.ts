@@ -28,7 +28,8 @@ export class AppComponent {
           '/reception/edit-patient',
           '/doctor/edit-patient',
           '/reception/create-visit',
-          '/doctor/visit-list'
+          '/doctor/visit-list',
+          '/doctor/visit'
         ];
 
         this.showHeader = !noHeaderRoutes.some(route =>

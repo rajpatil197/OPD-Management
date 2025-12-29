@@ -20,4 +20,12 @@ export class VisitService {
    getVisitsByDoctor(doctorId: number): Observable<any[]> {
     return this.http.get<any[]>(this.api + "doctor/" + doctorId);
   }
+
+  getVisitById(id:Number){
+    return this.http.get(this.api + id);
+  }
+
+  updateVisit(id:number,data:any){
+    return this.http.put(this.api + id,data);
+  }
 }
