@@ -22,7 +22,7 @@ export class VisitService {
   }
 
   getVisitById(id:Number){
-    return this.http.get(this.api + id);
+    return this.http.get<any>(this.api + id);
   }
 
   updateVisit(id:number,data:any){
