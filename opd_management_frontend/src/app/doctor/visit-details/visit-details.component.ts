@@ -32,11 +32,21 @@ export class VisitDetailsComponent implements OnInit{
   }
 
   saveVisit(){
-     this.visitService.updateVisit(this.visitId,this.visit).subscribe({
-      next:()=> alert("Visit is updated Succesfully"),
-      error:()=>alert("Error saving Visit")
-     });
-  }
+    const payload ={
+      ...this.visit,
+      doctorid: this.visit.doctorid?.id,
+      patientid: this.visit.patientid?.id,
+    };
+    console.log("Sending Payload",payload);
+    
+    this.visitService.updateVisit(this.visitId,payload).subscribe({
+      next:() => alert("visit updated succesfully"),
 
+      error:(err) =>{
+        console.log(err);
+        alert("error saving visit") 
+      }
+    });
+  }
 
 }
