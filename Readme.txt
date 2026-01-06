@@ -2,7 +2,7 @@ OPD Management System
 
 The OPD Management System is a lightweight and efficient application designed to streamline outpatient department operations in hospitals, clinics, and healthcare centers. It digitizes patient records, automates appointment scheduling, and simplifies doctor–patient interaction—reducing manual workload and improving overall service quality.
 
-✨ Features
+**Features**
 
 Patient Registration & Profile Management
 Store and manage patient demographics, medical history, and visit records.
@@ -28,7 +28,7 @@ Quickly find patient records, doctors, visits, or prescriptions.
 User Roles & Authentication , Authorization of Roles
  Doctor, receptionist, and other role-based access controls.
 
- 🛠️ Tech Stack
+ **Tech Stack**
 Frontend (Angular 16)
 
 Angular CLI
@@ -51,12 +51,12 @@ Hibernate / JPA
 
 MySQL Database
 
-📌 Purpose
+##Purpose##
 
 This system aims to modernize OPD workflows by eliminating paperwork, improving record accuracy, and enabling healthcare professionals to deliver faster, more reliable patient care.
 
-🚀 Getting Started
-📌 Backend Setup (Spring Boot)
+** Getting Started
+** Backend Setup (Spring Boot)
 
 Navigate to the backend folder:
 
@@ -79,7 +79,7 @@ Run the backend:
 2)Import project in Eclipse or Intellji then Update Maven and Run .
 
 Backend runs at: http://localhost:8080
-📌 Frontend Setup (Angular 16)
+## Frontend Setup (Angular 16)
 
 Navigate to the frontend folder:
 
