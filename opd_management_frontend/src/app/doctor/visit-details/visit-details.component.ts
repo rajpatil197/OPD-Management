@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { VisitService } from 'src/app/services/visit-service.service';
 
 @Component({
@@ -12,7 +12,7 @@ export class VisitDetailsComponent implements OnInit{
   visit:any ={};
   visitId:number=0;
 
-  constructor(private route:ActivatedRoute,private visitService:VisitService){}
+  constructor(private route:ActivatedRoute,private visitService:VisitService,private router:Router){}
 
   ngOnInit(): void {
     
@@ -40,8 +40,10 @@ export class VisitDetailsComponent implements OnInit{
     console.log("Sending Payload",payload);
     
     this.visitService.updateVisit(this.visitId,payload).subscribe({
-      next:() => alert("visit updated succesfully"),
-
+      next:() => {
+        alert("visit updated succesfully");
+        this.router.navigate(['/doctor/visit-list']);
+      },
       error:(err) =>{
         console.log(err);
         alert("error saving visit") 

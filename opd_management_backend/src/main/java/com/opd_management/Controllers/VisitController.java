@@ -163,7 +163,8 @@ public class VisitController {
 		visit.setHb(visitDto.getHb());
 		visit.setEcg(visitDto.getEcg());
 		visit.setFollowup_date(visitDto.getFollowup_date());
-		visit.setUpdated_at(new Date());
+		visit.setUpdated_at(new java.sql.Date(System.currentTimeMillis()));
+
 		
 		// Update linked entities
 		Doctor doctor = doctorService.getDoctorById(visitDto.getDoctorid());
