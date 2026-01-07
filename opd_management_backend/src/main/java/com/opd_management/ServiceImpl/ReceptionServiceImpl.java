@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.opd_management.Exception.DataBaseException;
@@ -20,12 +21,17 @@ public class ReceptionServiceImpl implements ReceptionService {
 	@Autowired
 	private ReceptionRepository receptionRepository;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	@Override
 	public Reception saveReception(Reception reception) {
 		if (receptionRepository.existsByEmail(reception.getEmail())) {
 	        throw new DuplicateResourceException("Reception with email " + reception.getEmail() + " already exists");
 	    }
 	    try {
+	    	 reception.setPassword(passwordEncoder.encode(reception.getPassword())); //encrypt password
+	    	 
 	        return receptionRepository.save(reception);
 	    } catch (DataAccessException  e) {
 	        throw new DataBaseException("Failed to save Reception due to database error",e);
