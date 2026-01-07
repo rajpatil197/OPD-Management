@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.opd_management.Exception.DataBaseException;
@@ -20,6 +21,8 @@ public class DoctorServiceImpl implements DoctorService {
 	@Autowired
 	private DoctorRepository doctorRepository;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	//access repository methods
 	@Override
@@ -30,6 +33,8 @@ public class DoctorServiceImpl implements DoctorService {
 	        throw new DuplicateResourceException("Doctor with email " + doctor.getEmail() + " already exists");
 	    }
 	    try {
+	    	doctor.setPassword(passwordEncoder.encode(doctor.getPassword())); //Encrypt password
+	    	
 	        return doctorRepository.save(doctor);
 	    } catch (DataAccessException  e) {
 	        throw new DataBaseException("Failed to save doctor due to database error",e);
