@@ -1,10 +1,12 @@
 package com.opd_management.Controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.opd_management.Services.DoctorService;
 import com.opd_management.dtos.DoctorDto;
-import com.opd_management.dtos.DoctorLoginDto;
+import com.opd_management.dtos.LoginDto;
 import com.opd_management.entities.Doctor;
+import com.opd_management.security.jwt.JwtUtil;
 
 import jakarta.validation.Valid;
 
@@ -31,6 +34,11 @@ public class DoctorController {
 	@Autowired
 	private DoctorService doctorService;
 
+	@Autowired
+	private JwtUtil jwtUtil;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	// ---------------------- CREATE DOCTOR ----------------------
 	
@@ -144,19 +152,23 @@ public class DoctorController {
 	// ---------------------- DOCTOR LOGIN ----------------------
 
 	@PostMapping("/login")
-	public ResponseEntity<Doctor> loginDoctor(
-	        @Valid @RequestBody DoctorLoginDto loginDto) {
+	public ResponseEntity<?> loginDoctor(@Valid @RequestBody LoginDto loginDto) {
 
+		
 	    Doctor doctor = doctorService.getDoctorByEmail(loginDto.getEmail());
 
 	    if (doctor == null) {
-	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	        return  ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
 	    }
 
-	    if (!doctor.getPassword().equals(loginDto.getPassword())) {
-	        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+	    if (!passwordEncoder.matches(loginDto.getPassword(), doctor.getPassword())) {
+	        return  ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
 	    }
+	    
+	    String token = jwtUtil.generateToken(doctor.getEmail());
 
-	    return new ResponseEntity<>(doctor, HttpStatus.OK);
+	    return ResponseEntity.ok(Map.of("token",token,
+	    								"doctorId",doctor.getId(),
+	    								"email",doctor.getEmail()));
 	}
 }
