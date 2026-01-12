@@ -1,44 +1,55 @@
 package com.opd_management.security.config;
 
-import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.opd_management.security.jwt.JwtAuthenticationFilter;
+
+@EnableWebSecurity
 @Configuration
 public class SecurityConfig {
 
-	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		
-		http.cors(Customizer.withDefaults())
-			.csrf(csrf -> csrf.disable())
-			.authorizeHttpRequests(auth -> auth
-					.requestMatchers("/doctors/**",
-									 "/auth/**").permitAll()
-												.anyRequest().authenticated())
-									.httpBasic(Customizer.withDefaults());
-		
-		return http.build();
-		}
-	
-	public CorsConfigurationSource corsConfigurationSource() {
-		
-		CorsConfiguration config = new CorsConfiguration();
-		config.setAllowedOrigins(List.of("http://localhost:4200"));
-		config.setAllowedMethods(List.of("GET","POST", "PUT", "DELETE", "OPTIONS"));
-		config.setAllowedHeaders(List.of("*"));
-		config.setAllowCredentials(true);
-		
-		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("/**", config);
-		
-		return source;
-	}
+    @Autowired
+    private JwtAuthenticationFilter jwtAuthenticationFilter;
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+    
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
+        http
+            .csrf(csrf -> csrf.disable())
+            .sessionManagement(session ->
+                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            )
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/doctors/login", "/doctors/**").permitAll()
+
+                .requestMatchers("/patients/**").hasAnyRole("DOCTOR", "RECEPTION")
+                .requestMatchers("/receptions/**").hasAnyRole("DOCTOR", "RECEPTION")
+                .requestMatchers("/visits/**").hasRole("DOCTOR")
+                .requestMatchers("/bills/**").hasRole("DOCTOR")
+
+                .anyRequest().authenticated()
+            )
+            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
+        return http.build();
+    }
+
+
 }
+
+
