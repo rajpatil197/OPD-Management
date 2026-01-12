@@ -16,6 +16,10 @@ export class DashboardComponent implements OnInit {
   doctor:any =null;
   recentPatients: any[] = [];
 
+  visits: any[] = [];
+  patients: any[] = [];
+  receptions: any[] = [];
+
   doctorId!: number;
 
   constructor(
@@ -38,7 +42,9 @@ export class DashboardComponent implements OnInit {
 
   loadPatients() {
     this.patientService.getPatientsByDoctor(this.doctorId).subscribe(res => {
-      this.totalPatients = res.length;
+      this.patients = res || [];
+      this.totalPatients = this.patients.length;
+
 
       const today = new Date().toISOString().slice(0, 10);
 
@@ -52,7 +58,9 @@ export class DashboardComponent implements OnInit {
 
   loadReceptions() {
     this.receptionService.getReceptionsByDoctor(this.doctorId).subscribe(res => {
-      this.totalReceptions = res.length;
+      this.receptions = res || [];
+      this.totalReceptions = this.receptions.length;
+
     });
   }
 }

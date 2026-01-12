@@ -19,27 +19,30 @@ export class VisitListComponent implements OnInit {
     this.loadVisits();
   }
 
-  loadVisits() {
-    const doctorStr = localStorage.getItem('doctor');
+ loadVisits() {
+  const auth = localStorage.getItem('doctor');
 
-    if (!doctorStr) {
-      alert('Doctor not logged in');
-      return;
-    }
-
-    const doctor = JSON.parse(doctorStr);
-
-    this.visitService.getVisitsByDoctor(doctor.id).subscribe({
-      next: (res) => {
-        console.log('Doctor visits:', res);
-        this.visits = res;
-      },
-      error: (err) => {
-        console.error(err);
-        alert('Failed to load visits');
-      }
-    });
+  if (!auth) {
+    alert('Doctor not logged in');
+    return;
   }
+
+  const doctorObj = JSON.parse(auth);
+
+  // ✅ FIX HERE
+  const doctorId = doctorObj.id || doctorObj.doctor?.id;
+
+  if (!doctorId) {
+    alert('Doctor ID missing');
+    return;
+  }
+
+  this.visitService.getVisitsByDoctor(doctorId).subscribe({
+    next: res => this.visits = res || [],
+    error: err => console.error(err)
+  });
+}
+
 
   openVisit(visitId: number) {
     this.router.navigate(['/doctor/visit', visitId]);

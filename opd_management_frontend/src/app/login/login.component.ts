@@ -26,33 +26,36 @@ export class LoginComponent {
   }
 
   login() {
-    if (this.loginForm.invalid) {
-      alert("Enter Email & Password");
-      return;
-    }
-
-    this.doctorService.loginDoctor(this.loginForm.value).subscribe({
-      next: (doctor) => {
-        alert("Login Successful!");
-
-        // Save doctor object
-        localStorage.setItem("doctor", JSON.stringify(doctor));
-
-        // ⭐ IMPORTANT: save doctorId separately
-        localStorage.setItem("doctorId", doctor.id.toString());
-
-        // Redirect to dashboard
-        this.router.navigate(['/doctor/dashboard']);
-      },
-      error: (err) => {
-        if (err.status === 404) {
-          alert("Email Not Found");
-        } else if (err.status === 401) {
-          alert("Incorrect Password");
-        } else {
-          alert("Login Failed");
-        }
-      }
-    });
+  if (this.loginForm.invalid) {
+    alert("Enter Email & Password");
+    return;
   }
+
+  this.doctorService.loginDoctor(this.loginForm.value).subscribe({
+    next: (doctor: any) => {
+      alert("Login Successful!");
+
+      // Save full response
+      localStorage.setItem("doctor", JSON.stringify(doctor));
+
+      // Save required fields
+      localStorage.setItem("doctorId", doctor.doctorId.toString());
+      localStorage.setItem("token", doctor.token);
+      localStorage.setItem("email", doctor.email);
+
+      // Redirect
+      this.router.navigate(['/doctor/dashboard']);
+    },
+    error: (err) => {
+      if (err.status === 404) {
+        alert("Email Not Found");
+      } else if (err.status === 401) {
+        alert("Incorrect Password");
+      } else {
+        alert("Login Failed");
+      }
+    }
+  });
+}
+
 }

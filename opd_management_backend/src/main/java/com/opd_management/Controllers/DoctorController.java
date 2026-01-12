@@ -165,10 +165,13 @@ public class DoctorController {
 	        return  ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
 	    }
 	    
-	    String token = jwtUtil.generateToken(doctor.getEmail());
+	    String token = jwtUtil.generateToken(doctor.getEmail(), doctor.getRole());
 
-	    return ResponseEntity.ok(Map.of("token",token,
-	    								"doctorId",doctor.getId(),
-	    								"email",doctor.getEmail()));
+	    doctor.setToken(token);
+
+	    return ResponseEntity.ok(Map.of(
+	            "email", doctor.getEmail(),
+	            "doctorId", doctor.getId(),
+	            "token", token ));
 	}
 }

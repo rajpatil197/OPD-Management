@@ -155,9 +155,9 @@ public class PatientController {
 
 	    List<Patient> patients = patientService.getPatientsByDoctor(doctorId);
 
-	    if (patients.isEmpty()) {
-	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	    }
+//	    if (patients.isEmpty()) {
+//	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//	    }
 
 	    return new ResponseEntity<>(patients, HttpStatus.OK);
 	}
