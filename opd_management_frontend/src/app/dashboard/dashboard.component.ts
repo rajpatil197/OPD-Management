@@ -13,10 +13,9 @@ export class DashboardComponent implements OnInit {
   todayPatients = 0;
   totalReceptions = 0;
 
-  doctor:any =null;
+  doctor: any = null;
   recentPatients: any[] = [];
 
-  visits: any[] = [];
   patients: any[] = [];
   receptions: any[] = [];
 
@@ -30,37 +29,54 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
 
     const storedDoctor = localStorage.getItem('doctor');
-    if (storedDoctor) {
-      this.doctor = JSON.parse(storedDoctor);
+
+    if (!storedDoctor) {
+      alert('Doctor not logged in');
+      return;
     }
 
-    this.doctorId = Number(localStorage.getItem('doctorId'));
+    const doctorObj = JSON.parse(storedDoctor);
+
+    //  CORRECT doctorId
+    this.doctorId = doctorObj.doctorId;
+    this.doctor = doctorObj;
 
     this.loadPatients();
     this.loadReceptions();
   }
 
   loadPatients() {
-    this.patientService.getPatientsByDoctor(this.doctorId).subscribe(res => {
-      this.patients = res || [];
-      this.totalPatients = this.patients.length;
+    this.patientService.getPatientsByDoctor(this.doctorId).subscribe({
+      next: (res) => {
+        this.patients = res || [];
+        this.totalPatients = this.patients.length;
 
+        const today = new Date().toISOString().slice(0, 10);
 
-      const today = new Date().toISOString().slice(0, 10);
+        this.todayPatients = this.patients.filter((p: any) => {
+          const createdDate = p.created_at?.slice(0, 10);
+          return createdDate === today;
+        }).length;
 
-      this.todayPatients = res.filter(
-        (p: any) => p.created_at === today
-      ).length;
-
-      this.recentPatients = res.slice(0, 5);
+        this.recentPatients = this.patients.slice(0, 5);
+      },
+      error: (err) => {
+        console.error(err);
+        alert('Failed to load patients');
+      }
     });
   }
 
   loadReceptions() {
-    this.receptionService.getReceptionsByDoctor(this.doctorId).subscribe(res => {
-      this.receptions = res || [];
-      this.totalReceptions = this.receptions.length;
-
+    this.receptionService.getReceptionsByDoctor(this.doctorId).subscribe({
+      next: (res) => {
+        this.receptions = res || [];
+        this.totalReceptions = this.receptions.length;
+      },
+      error: (err) => {
+        console.error(err);
+        alert('Failed to load receptions');
+      }
     });
   }
 }

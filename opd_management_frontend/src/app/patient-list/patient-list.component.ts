@@ -25,28 +25,41 @@ export class PatientListComponent implements OnInit {
   }
 
   loadPatients() {
-    let doctorId: number | null = null;
+  let doctorId: number | null = null;
 
-    const doctor = localStorage.getItem('doctor');
-    if (doctor) doctorId = JSON.parse(doctor).id;
+  const doctorStr = localStorage.getItem('doctor');
+  if (doctorStr) {
+    const doctorObj = JSON.parse(doctorStr);
 
-    const reception = localStorage.getItem('reception');
-    if (!doctorId && reception) {
-      doctorId = JSON.parse(reception).doctorid?.id;
-    }
-
-    if (!doctorId) {
-      alert('Unauthorized');
-      return;
-    }
-
-    this.patientService.getPatientsByDoctor(doctorId).subscribe(res => {
-      this.patients = res;
-      this.filteredPatients = res;
-    });
+    // CORRECT KEY
+    doctorId = doctorObj.doctorId;
   }
 
-  // 🔍 Search
+  const receptionStr = localStorage.getItem('reception');
+  if (!doctorId && receptionStr) {
+    const receptionObj = JSON.parse(receptionStr);
+    doctorId = receptionObj.doctorid?.id;
+  }
+
+  if (!doctorId) {
+    alert('Unauthorized');
+    return;
+  }
+
+  this.patientService.getPatientsByDoctor(doctorId).subscribe({
+    next: (res) => {
+      this.patients = res || [];
+      this.filteredPatients = res || [];
+    },
+    error: (err) => {
+      console.error(err);
+      alert('Failed to load patients');
+    }
+  });
+}
+
+
+  //  Search
   applySearch() {
     const s = this.searchText.toLowerCase();
     this.filteredPatients = this.patients.filter(p =>
@@ -55,7 +68,7 @@ export class PatientListComponent implements OnInit {
     );
   }
 
-  // 👁️ View modal
+  //  View modal
   openViewModal(patient: any) {
     this.selectedPatient = patient;
     const modal = new bootstrap.Modal(
@@ -64,7 +77,7 @@ export class PatientListComponent implements OnInit {
     modal.show();
   }
 
-  // ✏️ Edit
+  //  Edit
  editPatient(patient: any) {
 
   // Doctor logged in
@@ -83,7 +96,7 @@ export class PatientListComponent implements OnInit {
 }
 
 
-  // 🗑️ Delete
+  //  Delete
   deletePatient(id: number) {
     if (confirm('Are you sure?')) {
       this.patientService.deletePatient(id).subscribe(() => {

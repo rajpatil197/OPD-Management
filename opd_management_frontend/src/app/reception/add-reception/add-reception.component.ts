@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ReceptionService } from 'src/app/services/reception-service.service';
 
-
 @Component({
   selector: 'app-add-reception',
   templateUrl: './add-reception.component.html',
@@ -23,8 +22,17 @@ export class AddReceptionComponent {
     private receptionService: ReceptionService,
     private router: Router
   ) {
-    const doctor = JSON.parse(localStorage.getItem('doctor')!);
-    this.reception.doctorid = doctor.id;   // ✅ auto assign doctor
+    const doctorStr = localStorage.getItem('doctor');
+
+    if (!doctorStr) {
+      alert('Doctor not logged in');
+      return;
+    }
+
+    const doctorObj = JSON.parse(doctorStr);
+
+    // CORRECT KEY
+    this.reception.doctorid = doctorObj.doctorId;
   }
 
   saveReception() {
