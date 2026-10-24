@@ -1,27 +1,235 @@
-/* Hero Section *
-/* Doctor Image */
-.doctor-image {
-  max-height: 380px;
+/* Design Tokens & Colors */
+.opd-landing-page {
+  color: #334155;
+  background-color: #f8fafc;
 }
 
-/* Why Choose OPD */
-.card-blue {
-  background: #0d6efd;
+.text-slate-900 {
+  color: #0f172a;
+}
+
+.text-slate-700 {
+  color: #334155;
+}
+
+.bg-slate-50 {
+  background-color: #f8fafc;
+}
+
+.bg-slate-900 {
+  background-color: #0f172a;
+}
+
+.text-slate-400 {
+  color: #94a3b8;
+}
+
+.text-teal {
+  color: #0d9488 !important;
+}
+
+.text-primary-gradient {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-teal-gradient {
+  background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Hero Section */
+.hero-section {
+  background-color: #f8fafc;
+  padding-top: 3.5rem;
+  padding-bottom: 4.5rem;
+}
+
+.hero-bg-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: radial-gradient(circle at 50% 0%, rgba(2, 132, 199, 0.08) 0%, rgba(13, 148, 136, 0.05) 45%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Portal Cards */
+.portal-card {
+  border-radius: 16px;
+  background-color: #ffffff;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.portal-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px -8px rgba(15, 23, 42, 0.12) !important;
+}
+
+/* Reception Portal */
+.reception-portal {
+  border: 1px solid #ccfbf1 !important;
+}
+
+.reception-portal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #0d9488, #14b8a6);
+}
+
+.reception-icon-bg {
+  width: 52px;
+  height: 52px;
   border-radius: 12px;
+  background-color: #ccfbf1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.card-white {
-  background: rgba(255, 255, 255, 0.9);
+.reception-badge {
+  background-color: #f0fdfa;
+  color: #0f766e;
+  border: 1px solid #99f6e4;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+.btn-teal-primary {
+  background-color: #0d9488;
+  color: #ffffff;
+  border: 1px solid #0d9488;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.btn-teal-primary:hover, .btn-teal-primary:focus {
+  background-color: #0f766e;
+  border-color: #0f766e;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+}
+
+.btn-teal-outline {
+  background-color: #ffffff;
+  color: #0f766e;
+  border: 1.5px solid #0d9488;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.btn-teal-outline:hover, .btn-teal-outline:focus {
+  background-color: #f0fdfa;
+  color: #115e59;
+  border-color: #0f766e;
+}
+
+/* Doctor Portal */
+.doctor-portal {
+  border: 1px solid #bfdbfe !important;
+}
+
+.doctor-portal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #0284c7, #2563eb);
+}
+
+.doctor-icon-bg {
+  width: 52px;
+  height: 52px;
   border-radius: 12px;
+  background-color: #dbeafe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.icon-blue {
-  font-size: 48px;
-  color: #0d6efd;
+.doctor-badge {
+  background-color: #eff6ff;
+  color: #0369a1;
+  border: 1px solid #bfdbfe;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
 }
 
-/* Clean button */
-.btn-light {
-  font-weight: bold;
-  border-radius: 30px;
+.btn-doctor-primary {
+  background-color: #0284c7;
+  color: #ffffff;
+  border: 1px solid #0284c7;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.btn-doctor-primary:hover, .btn-doctor-primary:focus {
+  background-color: #0369a1;
+  border-color: #0369a1;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+}
+
+.btn-doctor-outline {
+  background-color: #ffffff;
+  color: #0369a1;
+  border: 1.5px solid #0284c7;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.btn-doctor-outline:hover, .btn-doctor-outline:focus {
+  background-color: #eff6ff;
+  color: #1e40af;
+  border-color: #0369a1;
+}
+
+/* Feature Item */
+.feature-item {
+  border-radius: 12px;
+  border-color: #e2e8f0 !important;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-2px);
+  border-color: #cbd5e1 !important;
+}
+
+.feature-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Footer link hover */
+.hover-primary:hover {
+  color: #0284c7 !important;
+}
+
+@media (max-width: 767.98px) {
+  .hero-section {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+  }
 }

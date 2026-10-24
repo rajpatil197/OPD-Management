@@ -1,0 +1,72 @@
+<div class="card shadow-sm mt-3">
+  <div class="card-body">
+    <h5 class="card-title text-primary">🔬 Pathology Tests</h5>
+
+    <!-- Add Form -->
+    <div class="card mb-3 bg-light">
+      <div class="card-body">
+        <h6>Add Pathology Test</h6>
+        <form (ngSubmit)="addPathologyTest()" class="row g-3 align-items-end">
+          <div class="col-md-3">
+            <label class="form-label">Test Master</label>
+            <select class="form-select" [(ngModel)]="newTest.testMasterId" name="testMasterId" required>
+              <option value="" disabled selected>Select Test</option>
+              <option *ngFor="let tm of testMasters" [value]="tm.id">
+                {{ tm.testName || tm.test_name }} ({{ tm.unit }})
+              </option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Result</label>
+            <input type="text" class="form-control" [(ngModel)]="newTest.result" name="result" placeholder="Result" required>
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Remarks</label>
+            <input type="text" class="form-control" [(ngModel)]="newTest.remarks" name="remarks" placeholder="Remarks">
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Report File</label>
+            <input type="text" class="form-control" [(ngModel)]="newTest.reportFile" name="reportFile" placeholder="Report URL/Path">
+          </div>
+          <div class="col-12 text-end">
+            <button type="submit" class="btn btn-primary">Add Test</button>
+          </div>
+        </form>
+        <div *ngIf="successMsg" class="alert alert-success mt-2 py-2">{{ successMsg }}</div>
+        <div *ngIf="errorMsg" class="alert alert-danger mt-2 py-2">{{ errorMsg }}</div>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <table class="table table-striped table-bordered" *ngIf="pathologyTests && pathologyTests.length > 0">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>Test Name</th>
+          <th>Result</th>
+          <th>Normal Range</th>
+          <th>Remarks</th>
+          <th>Report</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let t of pathologyTests; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ t.testMaster?.testName || t.testMaster?.test_name || t.testMasterName || t.testName || 'Test' }}</td>
+          <td>{{ t.result }}</td>
+          <td>{{ t.testMaster?.normalRange || t.testMaster?.normal_range || '-' }}</td>
+          <td>{{ t.remarks }}</td>
+          <td>
+            <a *ngIf="t.reportFile || t.report_file" [href]="t.reportFile || t.report_file" target="_blank" class="btn btn-sm btn-outline-info">View</a>
+            <span *ngIf="!t.reportFile && !t.report_file" class="text-muted">-</span>
+          </td>
+          <td>
+            <button class="btn btn-sm btn-danger" (click)="deletePathologyTest(t.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p *ngIf="!pathologyTests || pathologyTests.length === 0" class="text-muted mb-0">No pathology tests for this visit.</p>
+  </div>
+</div>

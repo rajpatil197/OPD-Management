@@ -1,0 +1,40 @@
+<div class="container mt-4">
+  <h3>📋 Visit History</h3>
+  <div *ngIf="patient" class="card mb-3">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-3"><strong>Patient:</strong> {{ patient.patientName || patient.patient_name }}</div>
+        <div class="col-md-2"><strong>Age:</strong> {{ patient.age }}</div>
+        <div class="col-md-2"><strong>Gender:</strong> {{ patient.gender }}</div>
+        <div class="col-md-2"><strong>Blood Group:</strong> {{ patient.bloodGroup || patient.blood_group }}</div>
+        <div class="col-md-3"><strong>Mobile:</strong> {{ patient.mobileno }}</div>
+      </div>
+    </div>
+  </div>
+
+  <table class="table table-striped table-bordered" *ngIf="visits.length > 0">
+    <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th>Visit Date</th>
+        <th>Complaints</th>
+        <th>Diagnosis</th>
+        <th>BP</th>
+        <th>Follow-up</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let v of visits; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ v.visitDate || v.visit_date }}</td>
+        <td>{{ v.complaints }}</td>
+        <td>{{ v.diagnosis || 'Pending' }}</td>
+        <td>{{ v.bp }}</td>
+        <td>{{ v.followupDate || v.followup_date }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <p *ngIf="visits.length === 0" class="text-muted">No visit history found.</p>
+
+  <button class="btn btn-secondary" (click)="router.navigate(['/reception/patients'])">&larr; Back to Patients</button>
+</div>

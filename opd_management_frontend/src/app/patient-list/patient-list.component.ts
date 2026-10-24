@@ -14,6 +14,7 @@ export class PatientListComponent implements OnInit {
   filteredPatients: any[] = [];
   selectedPatient: any = null;
   searchText = '';
+  isReception = false;
 
   constructor(
     private patientService: PatientService,
@@ -21,8 +22,18 @@ export class PatientListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isReception = !!localStorage.getItem('reception');
     this.loadPatients();
   }
+
+  viewVisits(patientId: number) {
+    if (this.isReception) {
+      this.router.navigate(['/reception/patient-visits', patientId]);
+    } else {
+      this.router.navigate(['/doctor/patient-visits', patientId]);
+    }
+  }
+
 
   loadPatients() {
   let doctorId: number | null = null;
