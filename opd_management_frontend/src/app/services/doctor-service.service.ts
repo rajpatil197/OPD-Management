@@ -25,6 +25,11 @@ export class DoctorService {
     });
   }
 
+  // GET ALL DOCTORS (public)
+  getAllDoctors(): Observable<any[]> {
+    return this.http.get<any[]>(this.api + "/");
+  }
+
   // ✅ UPDATE PROFILE
   updateDoctor(id: number, doctor: any): Observable<any> {
     return this.http.put(`${this.api}/${id}`, doctor);

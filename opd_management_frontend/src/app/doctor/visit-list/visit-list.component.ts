@@ -20,19 +20,25 @@ export class VisitListComponent implements OnInit {
   }
 
   loadVisits() {
-    const doctorStr = localStorage.getItem('doctor');
+    const auth = localStorage.getItem('doctor');
 
-    if (!doctorStr) {
+    if (!auth) {
       alert('Doctor not logged in');
       return;
     }
 
-    const doctor = JSON.parse(doctorStr);
+    const doctorObj = JSON.parse(auth);
 
-    this.visitService.getVisitsByDoctor(doctor.id).subscribe({
+    const doctorId = doctorObj.doctorId;
+
+    if (!doctorId) {
+      alert('Doctor ID missing');
+      return;
+    }
+
+    this.visitService.getVisitsByDoctor(doctorId).subscribe({
       next: (res) => {
-        console.log('Doctor visits:', res);
-        this.visits = res;
+        this.visits = res || [];
       },
       error: (err) => {
         console.error(err);

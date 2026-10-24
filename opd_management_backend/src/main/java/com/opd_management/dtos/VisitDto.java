@@ -56,7 +56,6 @@ public class VisitDto {
     @Pattern(regexp = "^[0-9]{2,3}$", message = "Random sugar must be numeric")
     private String random_sugar;
 
-
     @Pattern(regexp = "^[A-Za-z0-9 .%-]+$",message = "Urea/Creatinine contains invalid characters")
     private String urea_creatine;
 

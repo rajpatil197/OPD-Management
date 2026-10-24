@@ -1,5 +1,6 @@
 package com.opd_management.Controllers;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -162,8 +163,8 @@ public class VisitController {
 		visit.setHb(visitDto.getHb());
 		visit.setEcg(visitDto.getEcg());
 		visit.setFollowup_date(visitDto.getFollowup_date());
-		visit.setCreated_at(visitDto.getCreated_at());
-		visit.setUpdated_at(visitDto.getUpdated_at());
+		visit.setUpdated_at(new java.sql.Date(System.currentTimeMillis()));
+
 		
 		// Update linked entities
 		Doctor doctor = doctorService.getDoctorById(visitDto.getDoctorid());
@@ -194,13 +195,14 @@ public class VisitController {
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT); // Correct delete response
 	}
 	
+	
 	@GetMapping("/doctor/{doctorId}")
 	public ResponseEntity<List<Visit>>getVisitByDoctor(@PathVariable int doctorId){
 		
 		List<Visit> visit = visitService.GetVisitByDoctor(doctorId);
-		 if (visit.isEmpty()) {
-		        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		    }
+//		 if (visit.isEmpty()) {
+//		        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//		    }
 
 		    return new ResponseEntity<>(visit, HttpStatus.OK);
 	}

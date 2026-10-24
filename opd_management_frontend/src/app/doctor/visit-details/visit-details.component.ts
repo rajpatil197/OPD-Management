@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { VisitService } from 'src/app/services/visit-service.service';
 
 @Component({
@@ -10,18 +10,18 @@ import { VisitService } from 'src/app/services/visit-service.service';
 export class VisitDetailsComponent implements OnInit{
 
   visit:any ={};
-  id!:number;
+  visitId:number=0;
 
-  constructor(private route:ActivatedRoute,private visitService:VisitService){}
+  constructor(private route:ActivatedRoute,private visitService:VisitService,private router:Router){}
 
   ngOnInit(): void {
     
-    this.id = Number(this.route.snapshot.paramMap.get('id'));
-    
+    this.visitId = Number(this.route.snapshot.paramMap.get('id'));
+    this.loadvisit();
   }
 
   loadvisit(){
-    this.visitService.getVisitById(this.id).subscribe({
+    this.visitService.getVisitById(this.visitId).subscribe({
       next: (res)=>{
         console.log("Visit Response:",res);
         
@@ -32,11 +32,23 @@ export class VisitDetailsComponent implements OnInit{
   }
 
   saveVisit(){
-     this.visitService.updateVisit(this.id,this.visit).subscribe({
-      next:()=> alert("Visit is updated Succesfully"),
-      error:()=>alert("Error saving Visit")
-     });
+    const payload ={
+      ...this.visit,
+      doctorid: this.visit.doctorid?.id,
+      patientid: this.visit.patientid?.id,
+    };
+    console.log("Sending Payload",payload);
+    
+    this.visitService.updateVisit(this.visitId,payload).subscribe({
+      next:() => {
+        alert("visit updated succesfully");
+        this.router.navigate(['/doctor/visit-list']);
+      },
+      error:(err) =>{
+        console.log(err);
+        alert("error saving visit") 
+      }
+    });
   }
-
 
 }

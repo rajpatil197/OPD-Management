@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+import com.opd_management.security.jwt.JwtUtil;
 import com.opd_management.Services.DoctorService;
 import com.opd_management.Services.ReceptionService;
 import com.opd_management.dtos.ReceptionDto;
@@ -34,6 +36,12 @@ public class ReceptionController {
 
     @Autowired
     private DoctorService doctorService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JwtUtil jwtUtil;
 
 
     // ---------------------- CREATE RECEPTION STAFF ----------------------
@@ -165,9 +173,16 @@ public class ReceptionController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        if (!reception.getPassword().equals(loginDto.getPassword())) {
+        boolean passwordMatches = (reception.getPassword() != null && passwordEncoder.matches(loginDto.getPassword(), reception.getPassword()))
+                || (reception.getPassword() != null && reception.getPassword().equals(loginDto.getPassword()));
+
+        if (!passwordMatches) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
+
+        String role = reception.getRole() != null ? reception.getRole() : "RECEPTION";
+        String token = jwtUtil.generateToken(reception.getEmail(), role);
+        reception.setToken(token);
 
         return new ResponseEntity<>(reception, HttpStatus.OK);
     }
