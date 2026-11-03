@@ -1,8 +1,117 @@
-.navbar {
-  background: rgba(255, 255, 255, 0.2) !important;
-  backdrop-filter: blur(10px);
-  position: fixed;
-  width: 100%;
-  z-index: 1000;
-  box-shadow: none !important;
+.main-healthcare-header {
+  background-color: #ffffff;
+  transition: all 0.25s ease;
+  z-index: 1040;
+}
+
+.brand-icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #0284c7, #0369a1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(2, 132, 199, 0.25);
+}
+
+.nav-link {
+  color: #475569;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #0284c7;
+  background-color: #f0f9ff;
+}
+
+.nav-link.active {
+  color: #0284c7;
+  font-weight: 600;
+  background-color: #e0f2fe;
+}
+
+/* Reception Group (Teal Theme) */
+.reception-group {
+  background-color: #f0fdfa;
+  border: 1px solid #ccfbf1;
+}
+
+.text-teal {
+  color: #0f766e;
+}
+
+.btn-reception-login {
+  background-color: #0d9488;
+  color: #ffffff;
+  font-weight: 500;
+  border: 1px solid #0d9488;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.btn-reception-login:hover {
+  background-color: #0f766e;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(13, 148, 136, 0.25);
+}
+
+.btn-reception-reg {
+  background-color: #ffffff;
+  color: #0f766e;
+  border: 1px solid #99f6e4;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.btn-reception-reg:hover {
+  background-color: #ccfbf1;
+  color: #115e59;
+}
+
+/* Doctor Group (Clinical Blue Theme) */
+.doctor-group {
+  background-color: #eff6ff;
+  border: 1px solid #dbeafe;
+}
+
+.btn-doctor-login {
+  background-color: #0284c7;
+  color: #ffffff;
+  font-weight: 500;
+  border: 1px solid #0284c7;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.btn-doctor-login:hover {
+  background-color: #0369a1;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
+}
+
+.btn-doctor-reg {
+  background-color: #ffffff;
+  color: #0369a1;
+  border: 1px solid #bfdbfe;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.btn-doctor-reg:hover {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+@media (max-width: 991.98px) {
+  .portal-nav-group {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  .portal-nav-group .btn {
+    flex: 1;
+  }
 }

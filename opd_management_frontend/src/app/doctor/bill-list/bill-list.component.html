@@ -1,0 +1,83 @@
+<div class="mt-3">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h5>💰 Bills</h5>
+    <button class="btn btn-sm btn-primary" (click)="showForm = !showForm">
+      {{ showForm ? 'Cancel' : '+ Add Bill' }}
+    </button>
+  </div>
+
+  <!-- Add Form -->
+  <div *ngIf="showForm" class="card mb-3">
+    <div class="card-body">
+      <form (ngSubmit)="addBill()">
+        <div class="row">
+          <div class="col-md-3 mb-2">
+            <label class="form-label">Consultation Fee</label>
+            <input type="number" class="form-control" [(ngModel)]="newBill.consultationFee" name="consultationFee">
+          </div>
+          <div class="col-md-3 mb-2">
+            <label class="form-label">Total Amount</label>
+            <input type="number" class="form-control" [(ngModel)]="newBill.totalAmount" name="totalAmount" required>
+          </div>
+          <div class="col-md-3 mb-2">
+            <label class="form-label">Paid Amount</label>
+            <input type="number" class="form-control" [(ngModel)]="newBill.paidAmount" name="paidAmount">
+          </div>
+          <div class="col-md-3 mb-2">
+            <label class="form-label">Pending Amount</label>
+            <input type="number" class="form-control" [(ngModel)]="newBill.pendingAmount" name="pendingAmount">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 mb-2">
+            <label class="form-label">Concession</label>
+            <input type="text" class="form-control" [(ngModel)]="newBill.concession" name="concession">
+          </div>
+          <div class="col-md-3 mb-2">
+            <label class="form-label">Payment Mode</label>
+            <select class="form-select" [(ngModel)]="newBill.paymentMode" name="paymentMode">
+              <option value="Cash">Cash</option>
+              <option value="UPI">UPI</option>
+              <option value="Card">Card</option>
+              <option value="Online">Online</option>
+            </select>
+          </div>
+          <div class="col-md-3 mb-2">
+            <label class="form-label">Payment Status</label>
+            <select class="form-select" [(ngModel)]="newBill.paymentStatus" name="paymentStatus">
+              <option value="Pending">Pending</option>
+              <option value="Paid">Paid</option>
+              <option value="Partially Paid">Partially Paid</option>
+            </select>
+          </div>
+          <div class="col-md-3 mb-2 d-flex align-items-end">
+            <button type="submit" class="btn btn-success w-100">Save Bill</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="successMsg" class="alert alert-success">{{ successMsg }}</div>
+  <div *ngIf="errorMsg" class="alert alert-danger">{{ errorMsg }}</div>
+
+  <!-- Table -->
+  <table class="table table-striped table-bordered" *ngIf="bills.length > 0">
+    <thead class="table-dark">
+      <tr><th>#</th><th>Consultation Fee</th><th>Total</th><th>Paid</th><th>Pending</th><th>Mode</th><th>Status</th><th>Actions</th></tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let b of bills; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>₹{{ b.consultationFee || b.consultation_fee }}</td>
+        <td>₹{{ b.totalAmount || b.total_amount }}</td>
+        <td>₹{{ b.paidAmount || b.paid_amount }}</td>
+        <td>₹{{ b.pendingAmount || b.pending_amount }}</td>
+        <td>{{ b.paymentMode || b.payment_mode }}</td>
+        <td><span class="badge" [ngClass]="{'bg-success': (b.paymentStatus || b.payment_status) === 'Paid', 'bg-warning': (b.paymentStatus || b.payment_status) === 'Partially Paid', 'bg-danger': (b.paymentStatus || b.payment_status) === 'Pending'}">{{ b.paymentStatus || b.payment_status }}</span></td>
+        <td><button class="btn btn-sm btn-danger" (click)="deleteBill(b.id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <p *ngIf="bills.length === 0" class="text-muted">No bills found for this visit.</p>
+</div>

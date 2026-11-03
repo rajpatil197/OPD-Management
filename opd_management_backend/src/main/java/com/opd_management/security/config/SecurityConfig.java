@@ -12,6 +12,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import org.springframework.web.cors.CorsConfigurationSource;
+
 import com.opd_management.security.jwt.JwtAuthenticationFilter;
 
 @EnableWebSecurity
@@ -20,6 +22,9 @@ public class SecurityConfig {
 
     @Autowired
     private JwtAuthenticationFilter jwtAuthenticationFilter;
+
+    @Autowired
+    private CorsConfigurationSource corsConfigurationSource;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -30,17 +35,20 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
+            .cors(cors -> cors.configurationSource(corsConfigurationSource))
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session ->
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/doctors/login", "/doctors/**").permitAll()
+                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                .requestMatchers("/doctors/login", "/doctors/**", "/receptions/login").permitAll()
 
                 .requestMatchers("/patients/**").hasAnyRole("DOCTOR", "RECEPTION")
                 .requestMatchers("/receptions/**").hasAnyRole("DOCTOR", "RECEPTION")
-                .requestMatchers("/visits/**").hasRole("DOCTOR")
-                .requestMatchers("/bills/**").hasRole("DOCTOR")
+                .requestMatchers("/visits/**").hasAnyRole("DOCTOR", "RECEPTION")
+                .requestMatchers("/bills/**").hasAnyRole("DOCTOR", "RECEPTION")
+                .requestMatchers("/diagnostics/**", "/medicines/**", "/pathology-tests/**", "/referrals/**", "/referral-centers/**", "/test-masters/**", "/visit-reports/**").hasAnyRole("DOCTOR", "RECEPTION")
 
                 .anyRequest().authenticated()
             )
@@ -48,8 +56,6 @@ public class SecurityConfig {
 
         return http.build();
     }
-
-
 }
 
 

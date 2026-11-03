@@ -14,27 +14,15 @@ export class AppComponent {
 
     this.router.events.subscribe(event => {
 
-      // ✅ Only react after navigation ends
       if (event instanceof NavigationEnd) {
+        // Hide main public header inside doctor and reception dashboard layouts
+        const isDashboardRoute =
+          event.urlAfterRedirects.startsWith('/doctor/') ||
+          event.urlAfterRedirects === '/doctor' ||
+          event.urlAfterRedirects.startsWith('/reception/') ||
+          event.urlAfterRedirects === '/reception';
 
-        const noHeaderRoutes = [
-          '/doctor/dashboard',
-          '/doctor/patients',
-          '/doctor/reception-list',
-          '/doctor/add-reception',
-          '/reception/dashboard',
-          '/reception/add-patient',
-          '/reception/patients',
-          '/reception/edit-patient',
-          '/doctor/edit-patient',
-          '/reception/create-visit',
-          '/doctor/visit-list',
-          '/doctor/visit'
-        ];
-
-        this.showHeader = !noHeaderRoutes.some(route =>
-          event.urlAfterRedirects.startsWith(route)
-        );
+        this.showHeader = !isDashboardRoute;
       }
 
     });

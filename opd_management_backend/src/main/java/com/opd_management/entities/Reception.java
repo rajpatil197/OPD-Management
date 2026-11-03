@@ -24,11 +24,20 @@ public class Reception {
 	private String role;
 	private String shift;
 	private String password;
+	private String token;
 	
 	 @ManyToOne
 	 @JoinColumn(name="doctor_id")
 	 @JsonIgnoreProperties({"patients","receptions"})
 	 private Doctor doctorid;
+
+	 public String getToken() {
+		 return token;
+	 }
+
+	 public void setToken(String token) {
+		 this.token = token;
+	 }
 	 
 	 
 

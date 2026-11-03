@@ -41,3 +41,6 @@ export class PatientService {
     return this.http.put(this.api + id, data);
   }
 }
+
+export { PatientService as PatientServiceService };
+

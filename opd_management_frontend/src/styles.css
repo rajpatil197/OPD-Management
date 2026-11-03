@@ -1,4 +1,84 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global Styles for OPD Management System */
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar {
+  min-height: calc(100vh - 56px);
+}
+
+.sidebar .nav-link {
+  padding: 12px 20px;
+  border-radius: 0;
+  transition: background-color 0.2s;
+}
+
+.sidebar .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar .nav-link.active {
+  background-color: rgba(255, 255, 255, 0.2);
+  font-weight: 600;
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.table thead th {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+.btn {
+  border-radius: 6px;
+}
+
+.form-control, .form-select {
+  border-radius: 6px;
+}
+
+.alert {
+  border-radius: 8px;
+}
+
+.shadow {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Tab styling */
+.nav-tabs .nav-link {
+  border-radius: 8px 8px 0 0;
+  font-weight: 500;
+}
+
+.nav-tabs .nav-link.active {
+  font-weight: 600;
+  color: #0d6efd;
+}
+
+.tab-content {
+  padding: 20px;
+  background: white;
+  border: 1px solid #dee2e6;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+}
+
+
 /* Background Image Panel */
 .bg-image {
   background: url('assets/img/hero-bg.jpg') center/cover no-repeat;

@@ -1,20 +1,107 @@
-.login-wrapper {
-  background: #f4f7fb;
+.auth-page-wrapper {
+  min-height: calc(100vh - 70px);
+  background-color: #f8fafc;
+  display: flex;
+  align-items: center;
 }
 
-.login-card {
+.auth-card {
   border-radius: 16px;
-  overflow: hidden;
+  background-color: #ffffff;
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.08), 0 4px 6px -2px rgba(15, 23, 42, 0.03) !important;
 }
 
-.login-image {
-  background: url('/assets/img/about.jpg') center/cover no-repeat;
+.reception-side-panel {
+  background: linear-gradient(145deg, #0d9488 0%, #0f766e 50%, #115e59 100%);
   position: relative;
 }
 
-.login-image .overlay {
-  background: rgba(0, 0, 0, 0.6);
-  height: 100%;
+.panel-icon-box-teal {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.2);
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-teal {
+  color: #0d9488 !important;
+}
+
+.text-white-75 {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.text-white-50 {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.bg-white-10 {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.border-white-20 {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.reception-badge-soft {
+  background-color: #f0fdfa;
+  color: #0f766e;
+  border: 1px solid #99f6e4;
+}
+
+.text-slate-900 {
+  color: #0f172a;
+}
+
+.text-slate-700 {
+  color: #334155;
+}
+
+.bg-slate-50 {
+  background-color: #f8fafc;
+}
+
+.form-control {
+  border-color: #cbd5e1;
+  color: #1e293b;
+  font-size: 0.95rem;
+  padding: 0.65rem 0.75rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+  border-color: #0d9488;
+  box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.18);
+  outline: none;
+}
+
+.input-group-text {
+  border-color: #cbd5e1;
+}
+
+.btn-toggle-pass {
+  cursor: pointer;
+  background: transparent;
+}
+
+.btn-toggle-pass:hover {
+  color: #0d9488 !important;
+}
+
+.btn-teal-primary {
+  background-color: #0d9488;
+  border-color: #0d9488;
+  color: #ffffff;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-teal-primary:hover, .btn-teal-primary:focus {
+  background-color: #0f766e;
+  border-color: #0f766e;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(13, 148, 136, 0.28);
 }

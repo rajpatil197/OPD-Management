@@ -1,0 +1,54 @@
+<div class="container mt-4">
+  <h3>🧪 Test Masters</h3>
+
+  <!-- Add Form -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <h5>Add New Test Master</h5>
+      <form (ngSubmit)="addTestMaster()" class="row g-3 align-items-end">
+        <div class="col-md-4">
+          <label class="form-label">Test Name</label>
+          <input type="text" class="form-control" [(ngModel)]="newTestMaster.testName" name="testName" placeholder="e.g. Blood Sugar" required>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Unit</label>
+          <input type="text" class="form-control" [(ngModel)]="newTestMaster.unit" name="unit" placeholder="e.g. mg/dL" required>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Normal Range</label>
+          <input type="text" class="form-control" [(ngModel)]="newTestMaster.normalRange" name="normalRange" placeholder="e.g. 70-110" required>
+        </div>
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-primary w-100">Add Test</button>
+        </div>
+      </form>
+      <div *ngIf="successMsg" class="alert alert-success mt-2">{{ successMsg }}</div>
+      <div *ngIf="errorMsg" class="alert alert-danger mt-2">{{ errorMsg }}</div>
+    </div>
+  </div>
+
+  <!-- List -->
+  <table class="table table-striped table-bordered" *ngIf="testMasters.length > 0">
+    <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th>Test Name</th>
+        <th>Unit</th>
+        <th>Normal Range</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let t of testMasters; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ t.testName || t.test_name }}</td>
+        <td>{{ t.unit }}</td>
+        <td>{{ t.normalRange || t.normal_range }}</td>
+        <td>
+          <button class="btn btn-sm btn-danger" (click)="deleteTestMaster(t.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p *ngIf="testMasters.length === 0" class="text-muted">No test masters found.</p>
+</div>

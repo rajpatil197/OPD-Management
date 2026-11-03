@@ -1,0 +1,48 @@
+<div class="container mt-4">
+  <h3>💊 Medicines</h3>
+
+  <!-- Add Form -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <h5>Add New Medicine</h5>
+      <form (ngSubmit)="addMedicine()" class="row g-3 align-items-end">
+        <div class="col-md-4">
+          <label class="form-label">Medicine Name</label>
+          <input type="text" class="form-control" [(ngModel)]="newMedicine.medicineName" name="medicineName" required>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Type</label>
+          <select class="form-select" [(ngModel)]="newMedicine.type" name="type">
+            <option value="Tablet">Tablet</option>
+            <option value="Syrup">Syrup</option>
+            <option value="Capsule">Capsule</option>
+            <option value="Injection">Injection</option>
+            <option value="Ointment">Ointment</option>
+            <option value="Drops">Drops</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <button type="submit" class="btn btn-primary">Add Medicine</button>
+        </div>
+      </form>
+      <div *ngIf="successMsg" class="alert alert-success mt-2">{{ successMsg }}</div>
+      <div *ngIf="errorMsg" class="alert alert-danger mt-2">{{ errorMsg }}</div>
+    </div>
+  </div>
+
+  <!-- List -->
+  <table class="table table-striped table-bordered" *ngIf="medicines.length > 0">
+    <thead class="table-dark">
+      <tr><th>#</th><th>Medicine Name</th><th>Type</th><th>Actions</th></tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let m of medicines; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ m.medicineName || m.medicine_name }}</td>
+        <td>{{ m.type }}</td>
+        <td><button class="btn btn-sm btn-danger" (click)="deleteMedicine(m.id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <p *ngIf="medicines.length === 0" class="text-muted">No medicines found.</p>
+</div>

@@ -32,19 +32,22 @@
           <p class="mb-3"><strong>Blood Group:</strong> {{ p.blood_group }}</p>
 
           <!-- ACTION BUTTONS -->
-          <div class="mt-auto d-flex justify-content-between gap-2">
+          <div class="mt-auto d-flex flex-wrap justify-content-between gap-2">
 
-           <button class="btn btn-sm btn-outline-primary w-100" (click)="openViewModal(p)">
+            <button class="btn btn-sm btn-outline-primary flex-fill" (click)="openViewModal(p)">
               <i class="bi bi-eye"></i> View
             </button>
 
+            <button class="btn btn-sm btn-outline-info flex-fill" (click)="viewVisits(p.id)">
+              <i class="bi bi-journal-medical"></i> Visits
+            </button>
 
-            <button class="btn btn-sm btn-outline-warning w-100"
+            <button class="btn btn-sm btn-outline-warning flex-fill"
                     (click)="editPatient(p)">
               <i class="bi bi-pencil-square"></i> Edit
             </button>
 
-            <button class="btn btn-sm btn-outline-danger w-100"
+            <button class="btn btn-sm btn-outline-danger flex-fill"
                     (click)="deletePatient(p.id)">
               <i class="bi bi-trash"></i> Delete
             </button>
@@ -96,6 +99,9 @@
       </div>
 
       <div class="modal-footer">
+        <button class="btn btn-info text-white" (click)="viewVisits(selectedPatient.id)" data-bs-dismiss="modal">
+          <i class="bi bi-journal-medical me-1"></i> View Visits
+        </button>
         <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
 
